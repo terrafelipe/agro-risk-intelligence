@@ -1,6 +1,6 @@
 """Browser regressions with isolated HTTP fixtures; never writes to Supabase.
 
-Install requirements-test.txt and Chromium (or set SOMPO_TEST_BROWSER=msedge).
+Install requirements-test.txt and Chromium (or set AGRO_TEST_BROWSER=msedge).
 """
 import os
 from datetime import date, datetime, timedelta, timezone
@@ -20,7 +20,7 @@ FARMS = [dict(id_fazenda=i, nome=f'Fazenda {i}', fk_cliente_id_cliente=i, locali
 @pytest.fixture(params=[1280, 390], ids=['desktop', 'mobile'])
 def painel(request):
     with pw.sync_playwright() as p:
-        browser = p.chromium.launch(channel=os.getenv('SOMPO_TEST_BROWSER') or None)
+        browser = p.chromium.launch(channel=os.getenv('AGRO_TEST_BROWSER') or None)
         page = browser.new_page(viewport={'width': request.param, 'height': 900})
         state = dict(role='sompo', fail=set(), posts=[], held=[], hold=None, errors=[],
                      sem_esp32=False, sem_maquinas=False, deleted=set(), deletes=[], delete_error=None, manut={}, valor={}, scores={}, coords={}, ocorrencias=[], eventos=[], gestores={})
@@ -118,7 +118,7 @@ def painel(request):
             elif path == '/ocorrencias':
                 data = {'dados': state['ocorrencias']}
             elif path == '/ocorrencias/responsaveis':
-                data = {'dados': [dict(id_usuario=1, usuario='ana.sompo', role='sompo')]}
+                data = {'dados': [dict(id_usuario=1, usuario='ana.seguradora', role='sompo')]}
             elif path == '/eventos':
                 data = {'dados': state['eventos']}
             elif path == '/saude':
@@ -133,7 +133,7 @@ def painel(request):
 
         page.route('**/*', route)
         page.goto('http://painel.test/')
-        # O perfil Sompo abre no Inicio (carteira); a fazenda e escolhida pelo cartao.
+        # O perfil Seguradora abre no Inicio (carteira); a fazenda e escolhida pelo cartao.
         page.locator('[data-abrir-fazenda="1"]').click()
         pw.expect(page.locator('#listaMaquinas')).to_contain_text('Trator 1')
         # Abrir a fazenda dispara cargas em paralelo; o teste so comeca com a rede quieta
@@ -166,7 +166,7 @@ def acao(page, seletor):
 
 
 def captura(page, nome):
-    destino = os.getenv('SOMPO_TEST_ARTIFACTS')
+    destino = os.getenv('AGRO_TEST_ARTIFACTS')
     if destino:
         path = Path(destino)
         path.mkdir(parents=True, exist_ok=True)
@@ -819,7 +819,7 @@ def test_detalhe_do_alerta_nao_executa_html_vindo_do_banco(painel):
 
 def test_salvar_ocorrencia_sem_mexer_no_responsavel_nao_o_apaga(painel):
     page, state = painel
-    state['ocorrencias'] = [_ocorrencia(1, 'Capô aberto', 'aberta', responsavel_id=9, responsavel_nome='antigo.sompo')]
+    state['ocorrencias'] = [_ocorrencia(1, 'Capô aberto', 'aberta', responsavel_id=9, responsavel_nome='antigo.seguradora')]
     nav(page, 'ocorrencias')
     page.locator('[data-oc="1"] [data-abrir-oc]').click()
     pw.expect(page.locator('#ocResponsavel')).to_have_value('9')

@@ -1,4 +1,4 @@
--- SOMPO - Tabela de FAZENDA (cadastro pelo dashboard).
+-- Agro Risk Intelligence - Tabela de FAZENDA (cadastro pelo dashboard).
 --
 -- Uma fazenda pertence a um cliente (o dono/responsavel) e agrupa equipamentos. E cadastrada
 -- pela tela "Fazendas" do painel: o navegador (logado) chama a API, que insere aqui usando a

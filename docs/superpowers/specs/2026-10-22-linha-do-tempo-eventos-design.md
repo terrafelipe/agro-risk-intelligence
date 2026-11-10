@@ -168,4 +168,4 @@ paralelo e devolve tudo em **uma** resposta.
 2. 7 dias e Período funcionam com a função SQL (teste no PGlite e teste da rota com o Supabase
    simulado), e caem no comportamento de R4 sem ela.
 3. Suítes verdes: backend, SQL (`node firmware/sql/tests/run.mjs`) e navegador.
-4. Em produção (depois do `sompo-deploy` e do SQL): 24 h em até ~3 s e 7 dias em até ~4 s.
+4. Em produção (depois do `agro-deploy` e do SQL): 24 h em até ~3 s e 7 dias em até ~4 s.

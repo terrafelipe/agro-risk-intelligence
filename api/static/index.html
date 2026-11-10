@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SOMPO · Painel de Risco</title>
+<title>Agro Risk Intelligence · Painel de Risco</title>
 <script>try{var t=localStorage.getItem('sompo.tema');if(t!=='claro'&&t!=='escuro')t=matchMedia('(prefers-color-scheme: dark)').matches?'escuro':'claro';document.documentElement.dataset.tema=t;}catch(e){document.documentElement.dataset.tema='claro';}</script>
 <style>
   /* ===== Temas (claro/escuro): tokens do Tailwind e cores da camada visual ===== */
@@ -104,7 +104,7 @@
   .material-symbols-outlined{font-variation-settings:'wght' 300}
   body{font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased}
   .tabular{font-variant-numeric:tabular-nums}
-  /* Cards de indicador: borda fina + leve degrade com o vermelho Sompo. */
+  /* Cards de indicador: borda fina + leve degrade com o vermelho da marca. */
   .kpi{position:relative;border:1px solid var(--v-borda);border-radius:.75rem;padding:1.25rem;
        background:linear-gradient(to top, rgba(183,1,0,.045), var(--v-card) 65%);box-shadow:0 1px 2px rgba(0,0,0,.03)}
   .kpi-ico{width:2rem;height:2rem;border:1px solid var(--v-borda);border-radius:.5rem;display:grid;place-items:center;color:var(--v-texto2);background:var(--v-card)}
@@ -443,7 +443,7 @@
   <div class="px-4 h-14 flex items-center gap-2.5 shrink-0">
     <div class="w-8 h-8 rounded-lg bg-primary text-on-primary grid place-items-center"><span class="material-symbols-outlined text-[20px]">agriculture</span></div>
     <div class="sb-txt leading-tight">
-      <div class="font-semibold text-on-surface tracking-tight">SOMPO</div>
+      <div class="font-semibold text-on-surface tracking-tight">Agro Risk</div>
       <div class="text-xs text-on-surface-variant">Painel de Risco</div>
     </div>
     <button id="btnFecharMenu" type="button" aria-label="Fechar menu" title="Fechar menu"
@@ -469,7 +469,7 @@
     <div class="flex items-center gap-2.5 p-1.5">
       <div class="w-8 h-8 rounded-full bg-primary/10 text-primary grid place-items-center shrink-0"><span class="material-symbols-outlined text-[18px]">person</span></div>
       <div class="sb-txt min-w-0 flex-1 leading-tight">
-        <div id="sideUsuario" class="text-sm font-medium text-on-surface truncate">Sompo</div>
+        <div id="sideUsuario" class="text-sm font-medium text-on-surface truncate">Seguradora</div>
         <div id="sidePerfil" class="text-xs text-on-surface-variant truncate">Portfólio</div>
       </div>
       <button type="button" data-minha-senha hidden title="Trocar minha senha" aria-label="Trocar minha senha" class="sb-txt p-1.5 rounded-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">password</span></button>
@@ -488,7 +488,7 @@
     <button id="btnMenu" type="button" class="lg:hidden w-9 h-9 -ml-1 grid place-items-center rounded-lg text-on-surface hover:bg-surface-container transition-colors"
             aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false"><span class="material-symbols-outlined">menu</span></button>
     <div class="lg:hidden flex items-center gap-1.5 font-extrabold text-primary">
-      <span class="material-symbols-outlined text-[22px]">agriculture</span><span class="hidden min-[380px]:inline">SOMPO</span>
+      <span class="material-symbols-outlined text-[22px]">agriculture</span><span class="hidden min-[380px]:inline">Agro Risk</span>
     </div>
     <div class="grow"></div>
     <button id="btnBusca" type="button" aria-keyshortcuts="Control+K" title="Busca rápida (Ctrl+K)"
@@ -513,7 +513,7 @@
     </button>
     <div id="menuUsuario" popover class="menu-acoes" style="min-width:15rem">
       <div class="px-2.5 py-2">
-        <div id="menuUsuarioNome" class="text-sm font-medium">Sompo</div>
+        <div id="menuUsuarioNome" class="text-sm font-medium">Seguradora</div>
         <span id="perfilBadge" class="hidden text-xs text-on-surface-variant"><span id="perfilTxt"></span></span>
       </div>
       <hr>
@@ -1166,7 +1166,7 @@
             <label class="block text-xs font-semibold text-on-surface-variant mb-1">Perfil *</label>
             <select id="usRole" class="w-full bg-surface-container-lowest rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer">
               <option value="gestor_fazenda">Gestor da fazenda (vê só a fazenda dele)</option>
-              <option value="sompo">Sompo (vê tudo e cadastra)</option>
+              <option value="sompo">Seguradora (vê tudo e cadastra)</option>
             </select>
           </div>
           <div id="usFazendaWrap">
@@ -1285,7 +1285,7 @@ const NAV_BASE = 'flex items-center gap-2.5 h-9 px-2.5 rounded-lg text-[13.5px] 
 const NAV_ON = ' bg-primary/[0.07] text-primary font-medium';
 const NAV_OFF = ' text-on-surface-variant hover:bg-surface-container hover:text-on-surface';
 const DESCRICOES = {
-  inicio:'Fazendas monitoradas pela Sompo. Escolha uma para ver a frota.',
+  inicio:'Fazendas monitoradas pela Seguradora. Escolha uma para ver a frota.',
   maquinas:'Frota da fazenda selecionada, com risco e comunicação de cada máquina.',
   visao:'Tudo da máquina selecionada: status, risco, alertas e telemetria.',
   exposicao:'Quanto está segurado e quanto está em máquinas com risco alto.',
@@ -1314,7 +1314,7 @@ const VIEWS = {
 };
 
 let viewAtual = 'maquinas';
-// O gestor tambem tem Inicio (a propria fazenda); cadastros continuam so da Sompo.
+// O gestor tambem tem Inicio (a propria fazenda); cadastros continuam so da Seguradora.
 const restrita = view => perfilRole !== 'sompo'
   && (['fazendas','clientes','usuarios'].includes(view) || (view === 'inicio' && perfilRole !== 'gestor_fazenda'));
 const dependeMaquina = view => view === 'visao';
@@ -1375,7 +1375,7 @@ function setView(view){
   if(mudou) window.scrollTo({top:0, behavior:'smooth'});
   // Voltando a uma aba ja desenhada, os dados antigos estao na tela: a entrada toca JA, sem esperar a
   // rede, e as animacoes por elemento (que so existiriam depois da resposta) contam como ja tocadas.
-  // (O Inicio da Sompo e a Exposicao fazem o equivalente por conta propria.)
+  // (O Inicio da Seguradora e a Exposicao fazem o equivalente por conta propria.)
   if(mudou && viewsVistas.has(view)){
     const gestorInicio = view === 'inicio' && perfilRole === 'gestor_fazenda';
     const alvos = view === 'visao' ? [...document.querySelectorAll('[data-section]')].filter(el => el.style.display !== 'none')
@@ -1974,7 +1974,7 @@ async function carregarInicioGestor(){
   const mapaGestor = $('gMapaFazenda');
   desenharMapaFazenda(mapaGestor, d.fazenda, d.equipamentos || [], {podeEditar: false});
   const avisoLocalizacao = mapaGestor.querySelector('[data-mf-vazio] p:last-child');
-  if(avisoLocalizacao) avisoLocalizacao.textContent = 'Peça à Sompo para informar a localização da fazenda.';
+  if(avisoLocalizacao) avisoLocalizacao.textContent = 'Peça à Seguradora para informar a localização da fazenda.';
   const maqs = (d.equipamentos || []).map(m => ({...m, risco: Math.max(m.scores?.score_furto || 0, m.scores?.score_incendio || 0)}))
     .sort((a, b) => b.risco - a.risco || String(a.nome).localeCompare(String(b.nome)));
   const online = maqs.filter(m => m.comunicacao === 'recente').length;
@@ -2035,7 +2035,7 @@ $('gAlertasLista').addEventListener('click', async e => {
 });
 
 /* ---------- Carteira: fazendas + resumo de cada uma ---------- */
-// Sompo: todas as fazendas, um resumo por fazenda em paralelo (uma com erro vira null e nao
+// Seguradora: todas as fazendas, um resumo por fazenda em paralelo (uma com erro vira null e nao
 // derruba as outras). Gestor: so a propria fazenda, pelo resumo que a tela Maquinas ja usa.
 async function carregarCarteira(){
   if(perfilRole === 'gestor_fazenda'){
@@ -2201,7 +2201,7 @@ async function abrirOcorrencia(o){
     const d = await getJSON(`/ocorrencias/responsaveis?fazenda=${o.fazenda_id}`);
     if(versao !== detalheVersao) return;   // outro detalhe foi aberto enquanto a lista carregava
     sel.insertAdjacentHTML('beforeend', (d.dados || []).filter(u => String(u.id_usuario) !== atual)
-      .map(u => `<option value="${u.id_usuario}">${escapar(u.usuario)}${u.role === 'sompo' ? ' (Sompo)' : ''}</option>`).join(''));
+      .map(u => `<option value="${u.id_usuario}">${escapar(u.usuario)}${u.role === 'sompo' ? ' (Seguradora)' : ''}</option>`).join(''));
   }catch(e){ /* sem a lista, da para salvar situacao e nota; o responsavel fica como esta */ }
 }
 async function salvarOcorrencia(id){
@@ -2224,7 +2224,7 @@ async function verMaquinaDaOcorrencia(id){
   await selecionarMaquina(o.equipamento_id, 'visao');
   irPara('secAlertas');
 }
-// Relato manual (sem alerta): fazenda (Sompo escolhe), maquina opcional, titulo e descricao.
+// Relato manual (sem alerta): fazenda (Seguradora escolhe), maquina opcional, titulo e descricao.
 async function preencherMaquinasOc(){
   const faz = perfilRole === 'gestor_fazenda' ? fazendaSelecionada : $('ocFazendaForm').value;
   $('ocMaquina').innerHTML = '<option value="">Nenhuma (relato geral)</option>';
@@ -2346,7 +2346,7 @@ function desenharExposicao({fazendas, resumos}){
           `<div class="inline-flex items-center gap-2">${selo(nome, corRisco(c))}<span class="font-medium text-on-surface tabular">${BRL.format(v)}</span><span class="text-on-surface-variant tabular">${Math.round(v / total * 100)}%</span></div>`).join('')}</div>`;
     if(mudou('exposicao-faixas', htmlFaixas) || !$('xFaixas').firstChild){ tipExpoEsconder(); $('xFaixas').innerHTML = htmlFaixas; }
 
-    // Linhas: fazendas (Sompo) ou maquinas (gestor), com a barra dividida em risco alto x demais.
+    // Linhas: fazendas (Seguradora) ou maquinas (gestor), com a barra dividida em risco alto x demais.
     const grupos = gestor
       ? maqs.map(m => ({nome: m.nome, maquinas: 1, total: m.valor ?? 0, alto: m.classe === 'ALTO' ? (m.valor ?? 0) : 0,
                         nAlto: m.valor != null && m.classe === 'ALTO' ? 1 : 0, nDemais: m.valor != null && m.classe !== 'ALTO' ? 1 : 0,
@@ -2565,7 +2565,7 @@ $('mapaFazendaSel').addEventListener('change', e => {
   try{ sessionStorage.setItem('sompo.mapaFazenda', mapaFazendaId); }catch(err){}
   desenharMapaFazendaInicio();
 });
-// Inicio da Sompo > Mapa > Fazenda: seletor (fazendasCache) + o componente abaixo.
+// Inicio da Seguradora > Mapa > Fazenda: seletor (fazendasCache) + o componente abaixo.
 function desenharMapaFazendaInicio(){
   const fs = fazendasCache, sel = $('mapaFazendaSel');
   if(!fs.some(f => String(f.id_fazenda) === mapaFazendaId))
@@ -2632,7 +2632,7 @@ async function desenharMapaFazenda(container, fazenda, maquinas, opcoes = {}){
   const elLista = q('[data-mf-lista]');
   if(elLista.dataset.assin !== lista){ elLista.dataset.assin = lista; elLista.innerHTML = lista; }
 
-  // Sem coordenadas: estado vazio (a Sompo informa a localizacao no editor da fazenda).
+  // Sem coordenadas: estado vazio (a Seguradora informa a localizacao no editor da fazenda).
   const lat = fazenda?.latitude == null ? NaN : Number(fazenda.latitude), lon = fazenda?.longitude == null ? NaN : Number(fazenda.longitude);
   const temLocal = Number.isFinite(lat) && Number.isFinite(lon);
   q('[data-mf-mapa]').hidden = q('[data-mf-legenda]').hidden = !temLocal;
@@ -2642,7 +2642,7 @@ async function desenharMapaFazenda(container, fazenda, maquinas, opcoes = {}){
     const vazio = `<span class="material-symbols-outlined text-[32px] text-on-surface-variant" aria-hidden="true">location_off</span>
       <p class="mt-2 text-sm font-medium text-on-surface">Esta fazenda ainda não tem localização.</p>
       ${st.op.podeEditar ? `<button type="button" data-mf-informar class="mt-4 inline-flex items-center gap-1.5 h-9 px-3 rounded-lg bg-primary text-on-primary font-medium hover:bg-on-primary-fixed-variant transition-colors"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">add_location_alt</span>Informar localização</button>`
-        : '<p class="mt-1 text-xs text-on-surface-variant">A Sompo informa a localização no cadastro da fazenda.</p>'}`;
+        : '<p class="mt-1 text-xs text-on-surface-variant">A Seguradora informa a localização no cadastro da fazenda.</p>'}`;
     if(elVazio.dataset.assin !== vazio){ elVazio.dataset.assin = vazio; elVazio.innerHTML = vazio; }
     return;
   }
@@ -2900,7 +2900,7 @@ $('feedFiltros').addEventListener('click', ev => {
 });
 
 /* ---------- Graficos (SVG puro, estilo shadcn) ---------- */
-// Paleta validada (dataviz/validate_palette): Furto azul, Incendio vermelho Sompo;
+// Paleta validada (dataviz/validate_palette): Furto azul, Incendio vermelho da marca;
 // temperatura: max vermelho, media laranja, ambiente azul.
 let periodo = 7;
 // Temperatura por dia e Alertas tem periodo proprio; trocar o global reinicia os dois nele.
@@ -4117,7 +4117,7 @@ async function criarCliente(ev){
 }
 
 /* ---------- Usuários (logins do painel) ---------- */
-const ROLE_ROTULO = {sompo:'Sompo', gestor_fazenda:'Gestor da fazenda'};
+const ROLE_ROTULO = {sompo:'Seguradora', gestor_fazenda:'Gestor da fazenda'};
 const ERRO_USUARIO = {
   usuario_obrigatorio:'Informe o nome de usuário.', senha_obrigatoria:'Informe a senha.',
   senha_curta:'A senha precisa de pelo menos 10 caracteres.',
@@ -4153,7 +4153,7 @@ async function carregarUsuarios(){
   }catch(e){ if(e.obsoleto) return; $('listaUsuarios').innerHTML =erroLista('Lista de usuários indisponível.'); }
 }
 
-// A fazenda vinculada só faz sentido para gestor_fazenda; some para o perfil Sompo.
+// A fazenda vinculada só faz sentido para gestor_fazenda; some para o perfil Seguradora.
 function atualizarCampoFazendaUsuario(){
   $('usFazendaWrap').style.display = ($('usRole').value === 'gestor_fazenda') ? '' : 'none';
 }
@@ -4338,7 +4338,7 @@ async function salvarMaquina(ev){
   finally{ if(envio===envioMaquina) $('maqSalvar').disabled = false; }
 }
 
-// Sompo sem fazenda escolhida: Operadores e Historico pedem a fazenda, como a aba Maquinas.
+// Seguradora sem fazenda escolhida: Operadores e Historico pedem a fazenda, como a aba Maquinas.
 const SEM_FAZENDA = '<div class="col-span-full text-on-surface-variant italic py-4">Nenhuma fazenda selecionada. Escolha uma no Início ou no seletor acima.</div>';
 const semFazenda = () => perfilRole === 'sompo' && !fazendaSelecionada;
 async function carregarOperadores(){
@@ -4468,7 +4468,7 @@ async function aplicarPerfil(){
     $('perfilTxt').textContent = 'Gestor da Fazenda ' + (me.fazenda_nome || '—');
     $('sidePerfil').textContent = 'Gestor · ' + (me.fazenda_nome || '—');
   } else {
-    $('perfilTxt').textContent = me.usuario ? 'Sompo · Portfólio' : 'Portfólio';
+    $('perfilTxt').textContent = me.usuario ? 'Seguradora · Portfólio' : 'Portfólio';
     $('deviceWrap').classList.add('hidden');       // o seletor de fazenda substitui o input
     carregarSeletorFazendas();   // sem await: o Inicio carrega junto (e divide a mesma /fazendas)
   }
@@ -4476,7 +4476,7 @@ async function aplicarPerfil(){
   $('sideUsuario').textContent = me.usuario || 'Modo demonstração';
   document.querySelectorAll('[data-minha-senha]').forEach(b => b.hidden = !me.usuario);
   $('menuUsuarioNome').textContent = me.usuario || 'Modo demonstração';
-  if(perfilRole !== 'gestor_fazenda') $('sidePerfil').textContent = 'Sompo · Portfólio';
+  if(perfilRole !== 'gestor_fazenda') $('sidePerfil').textContent = 'Seguradora · Portfólio';
 }
 
 async function carregarSeletorFazendas(){
@@ -4693,7 +4693,7 @@ async function confirmarExclusao(){
     if(r.status===401){ window.location='/login'; return; }
     const d=await r.json();
     if(!r.ok){
-      const erros={propria_conta:'Você não pode excluir sua própria conta.',ultimo_sompo:'É necessário manter pelo menos um usuário Sompo.',proibido:'Você não tem permissão para excluir este cadastro.',nao_encontrado:'Cadastro não encontrado.'};
+      const erros={propria_conta:'Você não pode excluir sua própria conta.',ultimo_sompo:'É necessário manter pelo menos um usuário Seguradora.',proibido:'Você não tem permissão para excluir este cadastro.',nao_encontrado:'Cadastro não encontrado.'};
       const dependencias=Object.entries(d.dependencias||{}).map(([k,v])=>`${v} ${k==='usuarios'?'usuários':k==='maquinas'?'máquinas':k}`).join(', ');
       throw new Error(d.erro==='cadastro_com_vinculos'?`Exclua primeiro os cadastros vinculados: ${dependencias}.`:erros[d.erro]||'Não foi possível excluir. Tente novamente.');
     }
@@ -4733,12 +4733,12 @@ async function abrirUsuario(id){
   }catch(e){ if(!e.obsoleto && versao===detalheVersao) $('detCorpo').textContent='Não foi possível carregar os detalhes do usuário.'; }
 }
 /* ---------- Troca de senha ---------- */
-// A propria (menu do usuario; exige a atual) e a de outro login (detalhe do usuario; so Sompo).
+// A propria (menu do usuario; exige a atual) e a de outro login (detalhe do usuario; so Seguradora).
 // Erros viram frases no proprio formulario, como nos cadastros.
 const ERRO_SENHA = {
   senha_curta:'A senha nova precisa de pelo menos 10 caracteres.', senha_igual:'A senha nova tem de ser diferente da atual.',
   senha_atual_incorreta:'A senha atual não confere.', muitas_tentativas:'Muitas tentativas erradas. Espere alguns minutos e tente de novo.',
-  nao_encontrado:'Este usuário não existe mais.', proibido:'Só o perfil Sompo pode trocar a senha de outra pessoa.',
+  nao_encontrado:'Este usuário não existe mais.', proibido:'Só o perfil Seguradora pode trocar a senha de outra pessoa.',
   sem_usuario:'O painel está sem login (modo demonstração): não há senha para trocar.'
 };
 const campoSenha = (id, rotulo, auto) => `<div><label for="${id}" class="block text-xs font-semibold text-on-surface-variant mb-1">${rotulo}</label><input id="${id}" type="password" autocomplete="${auto}" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-primary/20"/></div>`;
@@ -4871,7 +4871,7 @@ $('btnCancelarUsuario').addEventListener('click', ()=>{ $('formUsuario').classLi
 $('usRole').addEventListener('change', atualizarCampoFazendaUsuario);
 $('formUsuario').addEventListener('submit', criarUsuario);
 
-// Init: descobre o perfil, ajusta a UI e SO ENTAO carrega os dados. Cadastro so p/ Sompo.
+// Init: descobre o perfil, ajusta a UI e SO ENTAO carrega os dados. Cadastro so p/ Seguradora.
 
 // Busca rapida (Ctrl+K): maquinas da fazenda, fazendas, telas e acoes.
 const semAcento = t => String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();

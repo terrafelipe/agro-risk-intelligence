@@ -1,4 +1,4 @@
--- SOMPO fleet migration. Run after existing business/sensor/fazenda migrations.
+-- Agro Risk Intelligence fleet migration. Run after existing business/sensor/fazenda migrations.
 -- Additive and repeatable. Does not execute preparar_supabase.sql or erase data.
 -- API management uses service_role; browser/ESP32 roles use only token RPCs.
 begin;

@@ -18,7 +18,7 @@ sensores → ESP32 → Wi-Fi → Supabase (PostgREST)
 ```
 
 - **`firmware/`** — código do ESP32 (C++/Arduino, **Arduino IDE**). Sketch
-  `sompo_hardware_final/sompo_hardware_final.ino`.
+  `agro_hardware_final/agro_hardware_final.ino`.
 - **`api/`** — API REST em Flask. Lê o Supabase, calcula **scores de risco determinísticos** e gera os
   relatórios, usando o LLM apenas para redigir a análise (nunca para calcular os números).
 
@@ -57,11 +57,11 @@ sem PlatformIO). Uma vez por máquina:
 ```
 
 Depois, pelo VS Code (extensão **Arduino Community Edition**, já configurada em
-`firmware/sompo_hardware_final/.vscode/`) ou pela linha de comando:
+`firmware/agro_hardware_final/.vscode/`) ou pela linha de comando:
 
 ```powershell
 .\firmware\tools\arduino-cli.exe --config-file firmware\arduino-cli.yaml `
-  compile --fqbn esp32:esp32:esp32 firmware\sompo_hardware_final
+  compile --fqbn esp32:esp32:esp32 firmware\agro_hardware_final
 ```
 
 Placa **ESP32 Dev Module** (`esp32:esp32:esp32`), Monitor Serial em **115200**.
@@ -157,7 +157,7 @@ Sem o painel: `python tools/definir_senha.py <usuario>`. Trocar a senha derruba 
 ## Segurança
 
 - **Segredos nunca vão para o repositório.** `api/.env` e
-  `firmware/sompo_hardware_final/segredos.h` estão no `.gitignore`; o repositório traz só os
+  `firmware/agro_hardware_final/segredos.h` estão no `.gitignore`; o repositório traz só os
   modelos (`.env.example`, `segredos.exemplo.h`).
 - **Painel publicado (AWS Lambda):** usa sessão de login; mantenha `PAINEL_SENHA` definida e
   **`SOMPO_API_KEY` vazia**. A chave por header é opcional para clientes externos;

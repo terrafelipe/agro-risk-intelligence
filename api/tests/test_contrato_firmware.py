@@ -19,7 +19,7 @@ import pytest
 from scores import EIXO_POR_TIPO, SEVERIDADE_PADRAO
 
 RAIZ = Path(__file__).resolve().parents[2]
-INO = RAIZ / 'firmware' / 'sompo_hardware_final' / 'sompo_hardware_final.ino'
+INO = RAIZ / 'firmware' / 'agro_hardware_final' / 'agro_hardware_final.ino'
 SQL = RAIZ / 'firmware' / 'sql' / 'preparar_supabase.sql'
 
 pytestmark = pytest.mark.skipif(

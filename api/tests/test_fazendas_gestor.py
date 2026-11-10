@@ -15,7 +15,7 @@ USUARIOS = [
      'fk_fazenda_id_fazenda': 1, 'excluido_em': None},
     {'id_usuario': 9, 'usuario': 'antigo', 'senha': 'hash-antigo', 'role': 'gestor_fazenda',
      'fk_fazenda_id_fazenda': 2, 'excluido_em': '2026-09-01T00:00:00Z'},
-    {'id_usuario': 10, 'usuario': 'sompo', 'senha': 'hash-sompo', 'role': 'sompo',
+    {'id_usuario': 10, 'usuario': 'sompo', 'senha': 'hash-seguradora', 'role': 'sompo',
      'fk_fazenda_id_fazenda': 2, 'excluido_em': None},
 ]
 

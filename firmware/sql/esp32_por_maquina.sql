@@ -1,4 +1,4 @@
--- SOMPO: ID do ESP32 editavel e reaproveitavel; o historico de leituras acompanha a MAQUINA.
+-- Agro Risk Intelligence: ID do ESP32 editavel e reaproveitavel; o historico de leituras acompanha a MAQUINA.
 -- Rodar depois de frota.sql, exclusoes.sql e mapa_ocorrencias.sql, no SQL Editor do Supabase,
 -- e ANTES de publicar a API que consulta por maquina. Repetivel.
 begin;

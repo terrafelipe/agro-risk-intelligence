@@ -1,4 +1,4 @@
-"""Tela de troca de senha: a propria (menu do usuario) e a de outro usuario (detalhe, so Sompo)."""
+"""Tela de troca de senha: a propria (menu do usuario) e a de outro usuario (detalhe, so Seguradora)."""
 from tests.test_painel import painel, pw, nav  # noqa: F401
 
 
@@ -57,7 +57,7 @@ def test_modo_demo_nao_mostra_minha_senha(painel):
     pw.expect(page.locator('#menuUsuario [data-minha-senha]')).to_be_hidden()
 
 
-def test_sompo_troca_a_senha_de_um_usuario(painel):
+def test_seguradora_troca_a_senha_de_um_usuario(painel):
     page, state = painel
     nav(page, 'usuarios')
     page.locator('[data-usuario-detalhe="7"]').first.click()

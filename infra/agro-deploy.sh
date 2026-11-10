@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Deploy do painel SOMPO num comando so, para rodar no AWS CloudShell (com o lab iniciado).
+# Deploy do painel Agro Risk Intelligence num comando so, para rodar no AWS CloudShell (com o lab iniciado).
 #
 # Instalacao (uma vez):
-#   echo "alias sompo-deploy='cd ~/sompo-sprint3 && git fetch -q origin && git checkout -q main && git pull -q --ff-only && bash infra/sompo-deploy.sh'" >> ~/.bashrc && source ~/.bashrc
+#   echo "alias agro-deploy='cd ~/agro-risk-intelligence && git fetch -q origin && git checkout -q main && git pull -q --ff-only && bash infra/agro-deploy.sh'" >> ~/.bashrc && source ~/.bashrc
 # Uso:
-#   sompo-deploy
+#   agro-deploy
 #
 # O que faz: confere que o clone esta limpo e igual ao origin/main, roda infra/deploy-aws.ps1
 # e confirma que a imagem publicada tem o hash do commit atual (o clone do CloudShell ja

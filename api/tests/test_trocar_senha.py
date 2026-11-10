@@ -1,4 +1,4 @@
-"""Troca de senha pelo painel: a propria (com a senha atual) e a de outro usuario (so Sompo)."""
+"""Troca de senha pelo painel: a propria (com a senha atual) e a de outro usuario (so Seguradora)."""
 import time
 from unittest.mock import patch
 
@@ -98,7 +98,7 @@ def test_modo_demo_sem_usuario_nao_troca():
     gravar.assert_not_called()
 
 
-# --- senha de outro usuario (Sompo) -----------------------------------------------------------
+# --- senha de outro usuario (Seguradora) -----------------------------------------------------------
 
 GIL = _usuario(id_usuario=7, nome='gil', role='gestor_fazenda')
 
@@ -107,7 +107,7 @@ def _banco(n):
     return {'ana': _usuario(), 'gil': GIL}.get(n)
 
 
-def test_sompo_troca_a_senha_de_outro_usuario():
+def test_seguradora_troca_a_senha_de_outro_usuario():
     client = app.app.test_client()
     _logado(client)
     resposta, gravar = _chamar(client, 'post', '/usuarios/7/senha', {'senha_nova': 'senha-do-gil-1'}, _banco)

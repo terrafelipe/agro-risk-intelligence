@@ -22,7 +22,7 @@ def test_linha_do_tempo_volta_as_quatro_trilhas(painel):
     pw.expect(page.locator('#linhaTempoSeg')).to_have_count(0)
     pw.expect(page.locator('#ltLista')).to_have_count(0)
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
-    destino = os.getenv('SOMPO_TEST_ARTIFACTS')
+    destino = os.getenv('AGRO_TEST_ARTIFACTS')
     if destino:
         Path(destino).mkdir(parents=True, exist_ok=True)
         page.locator('[data-section="linhaTempo"]').scroll_into_view_if_needed()

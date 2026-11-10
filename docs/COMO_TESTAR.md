@@ -129,7 +129,7 @@ O firmware é um **sketch da Arduino IDE**, gravado direto no ESP32.
 
 **1. Abrir o sketch**
 ```
-firmware\sompo_hardware_final\sompo_hardware_final.ino
+firmware\agro_hardware_final\agro_hardware_final.ino
 ```
 (A pasta tem o mesmo nome do `.ino` — é o que a Arduino IDE exige.)
 
@@ -188,7 +188,7 @@ um sensor com defeito (caso do KY-026 hoje) ou para ligar um sensor novo: monte 
 
 Botão **→ (Upload)** e depois **Monitor Serial (115200)**. O esperado no boot:
 ```
-=== Sistema Sompo - Inicializando sensores ===
+=== Sistema Seguradora - Inicializando sensores ===
 Scanner I2C: procurando dispositivos...
   I2C: dispositivo encontrado em 0x38
   I2C: dispositivo encontrado em 0x68
@@ -430,7 +430,7 @@ cd api
 ```
 
 Se o Edge estiver instalado, pode dispensar o download do Chromium definindo
-`$env:SOMPO_TEST_BROWSER='msedge'` antes do pytest. Só API:
+`$env:AGRO_TEST_BROWSER='msedge'` antes do pytest. Só API:
 `../.venv/Scripts/python.exe -m pytest -q --ignore=tests/test_painel.py`.
 
 Os testes do painel usam a página real com respostas HTTP simuladas em `painel.test`,

@@ -16,10 +16,10 @@ from tests.test_painel import painel, pw, nav, captura  # noqa: F401
 @pytest.fixture(autouse=True)
 def _navegador_animacoes(monkeypatch, request):
     # Autouse roda antes de painel; monkeypatch restaura o ambiente apos cada teste.
-    if os.getenv('SOMPO_TEST_BROWSER'):
+    if os.getenv('AGRO_TEST_BROWSER'):
         return
     if Path(r'C:\Program Files\Google\Chrome\Application\chrome.exe').is_file() or shutil.which('chrome'):
-        monkeypatch.setenv('SOMPO_TEST_BROWSER', 'chrome')
+        monkeypatch.setenv('AGRO_TEST_BROWSER', 'chrome')
     elif request.node.originalname in (
         'test_popups_entram_com_escala_e_fade',
         'test_fechar_por_esc_fundo_botao_e_codigo',

@@ -1,4 +1,4 @@
-# Deploy do painel SOMPO na AWS Lambda (imagem Docker + Function URL), pensado para o
+# Deploy do painel Agro Risk Intelligence na AWS Lambda (imagem Docker + Function URL), pensado para o
 # AWS Academy Learner Lab: usa a LabRole pronta (o lab nao deixa criar roles) e as
 # credenciais temporarias da sessao (colar "AWS Details" em ~/.aws/credentials).
 #
@@ -120,7 +120,7 @@ if ($LASTEXITCODE -ne 0) { throw 'docker push falhou' }
 
 # --- 4. Cria ou atualiza a funcao -------------------------------------------------
 # O JSON com os segredos so existe durante este passo e e apagado mesmo se algo falhar.
-$envJson = Join-Path ([IO.Path]::GetTempPath()) 'sompo-lambda-env.json'
+$envJson = Join-Path ([IO.Path]::GetTempPath()) 'agro-lambda-env.json'
 try {
     [IO.File]::WriteAllText($envJson, (@{ Variables = $variaveis } | ConvertTo-Json -Depth 3), $utf8SemBom)
     if (Test-Existe lambda get-function --function-name $Funcao) {

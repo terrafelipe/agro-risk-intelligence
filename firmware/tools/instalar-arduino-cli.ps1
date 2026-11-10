@@ -29,7 +29,7 @@ $dataDir   = Join-Path $env:LOCALAPPDATA 'Arduino15'
 $sketchDir = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'Arduino'
 $indiceEsp32 = 'https://espressif.github.io/arduino-esp32/package_esp32_index.json'
 
-Write-Host "== SOMPO :: ambiente de compilacao do firmware ==" -ForegroundColor Cyan
+Write-Host "== Agro Risk Intelligence :: ambiente de compilacao do firmware ==" -ForegroundColor Cyan
 
 # --- 1. Sketchbook (onde ficam as bibliotecas ja instaladas) -----------------
 # MyDocuments segue o redirecionamento do OneDrive, que e onde as libs estao.
@@ -113,7 +113,7 @@ $gpp = Get-ChildItem (Join-Path $dataDir 'packages\esp32\tools') -Recurse -Filte
        Select-Object -First 1
 
 if ($coreDir -and $gpp) {
-    $vscode = Join-Path $firmware 'sompo_hardware_final\.vscode'
+    $vscode = Join-Path $firmware 'agro_hardware_final\.vscode'
     New-Item -ItemType Directory -Force $vscode | Out-Null
     $inc = @(
         "$($coreDir.FullName)\cores\esp32",
@@ -155,5 +155,5 @@ Write-Host "== Conferindo ==" -ForegroundColor Cyan
 
 Write-Host ""
 Write-Host "Compilar o firmware:" -ForegroundColor Cyan
-Write-Host "  .\firmware\tools\arduino-cli.exe --config-file firmware\arduino-cli.yaml compile --fqbn esp32:esp32:esp32 firmware\sompo_hardware_final"
+Write-Host "  .\firmware\tools\arduino-cli.exe --config-file firmware\arduino-cli.yaml compile --fqbn esp32:esp32:esp32 firmware\agro_hardware_final"
 Write-Host "No VS Code: a extensao Arduino ja esta apontada para este binario (.vscode\settings.json)." -ForegroundColor Cyan

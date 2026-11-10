@@ -1,4 +1,4 @@
-"""Sem fazenda (Sompo), Operadores e Historico pedem a fazenda; o historico marca operador excluido."""
+"""Sem fazenda (Seguradora), Operadores e Historico pedem a fazenda; o historico marca operador excluido."""
 from tests.test_painel import painel, pw, nav  # noqa: F401
 
 SESSAO = dict(sessao_id='s1', equipamento_id=1, equipamento_nome='Trator 1', operador_id=2, operador_nome='Gustavo Pugas',

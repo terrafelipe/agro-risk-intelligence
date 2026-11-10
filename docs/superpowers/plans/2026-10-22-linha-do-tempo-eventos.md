@@ -213,7 +213,7 @@
 ### Task 8: Documentação e suíte completa
 
 **Files:**
-- Modify: `README.md`, `contexto.md`, `docs/COMO_TESTAR.md`, `docs/DEPLOY.md` (passo do SQL novo, na ordem: rodar `firmware/sql/linha_do_tempo.sql` no SQL Editor do Supabase **antes** do `sompo-deploy`; sem ele só 24 h funciona)
+- Modify: `README.md`, `contexto.md`, `docs/COMO_TESTAR.md`, `docs/DEPLOY.md` (passo do SQL novo, na ordem: rodar `firmware/sql/linha_do_tempo.sql` no SQL Editor do Supabase **antes** do `agro-deploy`; sem ele só 24 h funciona)
 
 - [ ] **Step 1:** atualizar a rota na tabela de rotas do `contexto.md`, a seção do Painel da máquina no README e o roteiro de teste manual no `COMO_TESTAR.md` (abrir a máquina, ver resumo/gráfico/lista, filtros, tocar marcador, 7 dias, Período, tema escuro, celular).
 - [ ] **Step 2: Suíte completa em blocos** (PC com pouca RAM), de `api\`: backend = `tests/test_*.py` que não começam com `test_painel`; navegador = `ls tests/test_painel*.py | split -l 10`, um `pytest` por bloco; SQL = `node firmware/sql/tests/run.mjs` da raiz. Tudo verde.

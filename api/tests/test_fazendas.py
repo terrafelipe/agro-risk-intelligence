@@ -114,7 +114,7 @@ def test_criar_fazenda_sem_localizacao_da_400():
 
 
 # ---------------------------------------------------------------------------
-# PATCH /fazendas/<id>: edicao (Sompo), inclusive as coordenadas do mapa.
+# PATCH /fazendas/<id>: edicao (Seguradora), inclusive as coordenadas do mapa.
 # ---------------------------------------------------------------------------
 def _patch(corpo, retorno=None, **kw):
     client = app.test_client()

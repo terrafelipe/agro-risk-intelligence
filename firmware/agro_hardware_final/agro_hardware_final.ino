@@ -1,5 +1,5 @@
 /*
- * Projeto Sompo Seguros - Monitor de furto/incendio (hardware final)
+ * Projeto Agro Risk Intelligence - Monitor de furto/incendio (hardware final)
  * FIAP - Tecnologia em Inteligencia Artificial
  * Placa: ESP32 DevKit V1 | FQBN esp32:esp32:esp32 | Serial 115200
  *
@@ -82,7 +82,7 @@
 void setup() {
   Serial.begin(115200);
   delay(500);
-  Serial.println("=== Sistema Sompo - Inicializando sensores ===");
+  Serial.println("=== Sistema Seguradora - Inicializando sensores ===");
 
 #if USAR_MPU || USAR_AHT || DIAG_I2C
   Wire.begin(I2C_SDA, I2C_SCL);

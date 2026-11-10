@@ -1,4 +1,4 @@
--- SOMPO: mapa da carteira (coordenadas da fazenda) e ocorrencias (tratamento dos alertas).
+-- Agro Risk Intelligence: mapa da carteira (coordenadas da fazenda) e ocorrencias (tratamento dos alertas).
 -- Aditivo e repetivel: so acrescenta colunas e regras; nao apaga nem altera dados.
 -- Rodar depois de frota.sql e exclusoes.sql, no SQL Editor do Supabase.
 begin;

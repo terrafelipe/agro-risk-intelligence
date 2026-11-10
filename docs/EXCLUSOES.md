@@ -10,7 +10,7 @@ O perfil Seguradora exclui clientes, fazendas, usuários, operadores e máquinas
 exclui somente máquinas e operadores da própria fazenda. Clientes e fazendas com
 cadastros não excluídos vinculados exibem os impedimentos. Cadastros inativos ainda
 contam como vínculos: precisam ser excluídos primeiro. Não é permitido excluir a
-própria conta nem o último usuário Sompo.
+própria conta nem o último usuário Seguradora.
 
 Os botões **Excluir** aparecem nas listas de máquinas, operadores e usuários e
 nos detalhes de clientes e fazendas. A confirmação remove o cadastro do uso
@@ -45,7 +45,7 @@ node firmware/sql/tests/run.mjs
 ```
 
 Instale `api/requirements-test.txt` e o Chromium do Playwright (ou defina
-`SOMPO_TEST_BROWSER=msedge`). Os testes de navegador usam respostas HTTP simuladas;
+`AGRO_TEST_BROWSER=msedge`). Os testes de navegador usam respostas HTTP simuladas;
 os testes SQL usam PostgreSQL em WebAssembly (`@electric-sql/pglite@0.5.3` instalado
 em `firmware/sql/tests/.runtime`). Nenhum desses testes altera o Supabase.
 

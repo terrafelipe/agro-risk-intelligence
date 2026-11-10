@@ -1,7 +1,7 @@
 """Testes da aba Usuários: listagem e criação de logins do painel.
 
 Rodam em modo demo (fixture autouse em conftest.py desliga API key + login), então
-o perfil padrão é 'sompo' e o @somente_sompo libera. As funções de banco são mockadas.
+o perfil padrão é 'sompo' e o @somente_seguradora libera. As funções de banco são mockadas.
 """
 from unittest.mock import patch
 
@@ -20,7 +20,7 @@ def test_usuarios_listar():
     assert data['dados'][0]['usuario'] == 'sompo'
 
 
-def test_criar_usuario_sompo_ok():
+def test_criar_usuario_seguradora_ok():
     client = app.test_client()
     retorno = {'id_usuario': 2, 'usuario': 'novo', 'role': 'sompo', 'senha': 'x'}
     with patch('app.inserir_tabela', return_value=retorno) as ins:
@@ -82,7 +82,7 @@ def test_criar_usuario_duplicado_409():
 
 
 def test_usuarios_proibido_para_gestor():
-    # O perfil gestor_fazenda não acessa o cadastro de usuários (@somente_sompo).
+    # O perfil gestor_fazenda não acessa o cadastro de usuários (@somente_seguradora).
     client = app.test_client()
     with client.session_transaction() as sess:
         sess['role'] = 'gestor_fazenda'

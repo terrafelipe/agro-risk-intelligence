@@ -1,4 +1,4 @@
--- SOMPO: logo opcional do cliente (circulo antes do nome na aba Clientes).
+-- Agro Risk Intelligence: logo opcional do cliente (circulo antes do nome na aba Clientes).
 -- Rodar depois de exclusoes.sql e esp32_por_maquina.sql, no SQL Editor do Supabase,
 -- e ANTES de publicar a API que le/grava logo_url. Aditivo e repetivel.
 begin;

@@ -165,7 +165,7 @@ def exigir_login_painel():
             return _erro('autenticacao_indisponivel', exc, 502)
         if (atual and atual.get('excluido_em')) or (session.get('usuario_id') and not atual):
             session.clear()
-        # Senha trocada (pelo proprio usuario em outra sessao ou pela Sompo): a sessao cai.
+        # Senha trocada (pelo proprio usuario em outra sessao ou pela Seguradora): a sessao cai.
         # Sessao sem impressao (cookie de antes desta regra) tambem cai quando o banco ja tem
         # hash: pede login de novo uma vez. Antes de derrubar, consulta o banco sem o cache
         # de 20 s (a troca pode ter sido em outra instancia da Lambda).
@@ -444,12 +444,12 @@ def _dispositivo_para(req_dispositivo: str) -> str:
         raise frota.FrotaErro('frota_indisponivel', 502) from exc
 
 
-def somente_sompo(view):
+def somente_seguradora(view):
     # Cadastro/portfolio: so o perfil 'sompo'. Qualquer outro -> 403.
     @functools.wraps(view)
     def _wrap(*args, **kwargs):
         if _perfil()['role'] != 'sompo':
-            return jsonify({'erro': 'proibido', 'detalhe': 'acesso restrito ao perfil Sompo'}), 403
+            return jsonify({'erro': 'proibido', 'detalhe': 'acesso restrito ao perfil Seguradora'}), 403
         return view(*args, **kwargs)
     return _wrap
 
@@ -749,7 +749,7 @@ def relatorio_risco_pdf():
 # Cadastro de fazendas (tela do dashboard). Protegido pelo login do painel.
 # ---------------------------------------------------------------------------
 @app.get('/clientes')
-@somente_sompo
+@somente_seguradora
 def clientes():
     try:
         dados = consultar_clientes()
@@ -759,7 +759,7 @@ def clientes():
 
 
 @app.post('/clientes')
-@somente_sompo
+@somente_seguradora
 def clientes_criar():
     corpo = request.get_json(silent=True) or {}
     payload: Dict[str, Any] = {}
@@ -802,7 +802,7 @@ def _logo_url(valor):
 
 
 @app.patch('/clientes/<int:value>')
-@somente_sompo
+@somente_seguradora
 def clientes_trocar_logo(value):
     # Nao ha edicao de cliente: esta rota altera SO o logo (os outros campos sao ignorados).
     corpo = request.get_json(silent=True) or {}
@@ -829,7 +829,7 @@ def clientes_trocar_logo(value):
 
 
 @app.get('/fazendas')
-@somente_sompo
+@somente_seguradora
 def fazendas_listar():
     try:
         dados = consultar_fazendas()
@@ -843,7 +843,7 @@ def fazendas_listar():
 
 
 @app.post('/fazendas')
-@somente_sompo
+@somente_seguradora
 def fazendas_criar():
     corpo = request.get_json(silent=True) or {}
     nome = str(corpo.get('nome', '')).strip()
@@ -901,7 +901,7 @@ def _coordenada(valor, limite):
 
 
 @app.patch('/fazendas/<int:value>')
-@somente_sompo
+@somente_seguradora
 def fazendas_editar(value):
     corpo = request.get_json(silent=True)
     corpo = corpo if isinstance(corpo, dict) else {}
@@ -950,14 +950,14 @@ def fazendas_editar(value):
 
 
 # ---------------------------------------------------------------------------
-# Cadastro de usuarios/logins do painel (aba "Usuarios"). So o perfil Sompo.
+# Cadastro de usuarios/logins do painel (aba "Usuarios"). So o perfil Seguradora.
 # Senha em texto plano - demo academica, mesmo padrao de usuarios.sql.
 # ---------------------------------------------------------------------------
 _ROLES_VALIDAS = {'sompo', 'gestor_fazenda'}
 
 
 @app.get('/usuarios')
-@somente_sompo
+@somente_seguradora
 def usuarios_listar():
     try:
         dados = consultar_usuarios()
@@ -967,7 +967,7 @@ def usuarios_listar():
 
 
 @app.post('/usuarios')
-@somente_sompo
+@somente_seguradora
 def usuarios_criar():
     corpo = request.get_json(silent=True) or {}
     usuario = str(corpo.get('usuario', '')).strip()
@@ -1007,7 +1007,7 @@ def usuarios_criar():
 
 
 @app.get('/usuarios/<int:value>')
-@somente_sompo
+@somente_seguradora
 def usuario_detalhe(value):
     try:
         from supabase_client import consultar_usuario
@@ -1062,9 +1062,9 @@ def trocar_minha_senha():
 
 
 @app.post('/usuarios/<int:value>/senha')
-@somente_sompo
+@somente_seguradora
 def trocar_senha_de_usuario(value):
-    # A Sompo define a senha de qualquer login (sem a antiga); as sessoes dele caem.
+    # A Seguradora define a senha de qualquer login (sem a antiga); as sessoes dele caem.
     try:
         if not _sessao_valida_no_banco():
             return jsonify({'erro': 'nao_autorizado'}), 401

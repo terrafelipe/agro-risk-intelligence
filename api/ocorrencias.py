@@ -1,6 +1,6 @@
 """Ocorrencias: fila de tratamento dos alertas (aberta -> em verificacao -> resolvida).
 
-Mesmo escopo da frota: a Sompo ve todas as fazendas; o gestor so a propria.
+Mesmo escopo da frota: a Seguradora ve todas as fazendas; o gestor so a propria.
 A tabela vem de firmware/sql/mapa_ocorrencias.sql; sem ela, as rotas respondem 409.
 """
 import re
@@ -58,7 +58,7 @@ def _nomes(tabela, pk, ids, campo='nome'):
 
 
 def _responsaveis(fazenda_id):
-    # Quem pode assumir: usuarios Sompo e os gestores desta fazenda (nao excluidos).
+    # Quem pode assumir: usuarios Seguradora e os gestores desta fazenda (nao excluidos).
     rows = db.consultar_todos('usuario', filtros={'excluido_em': 'is.null'},
                               select='id_usuario,usuario,role,fk_fazenda_id_fazenda', order='usuario.asc')
     return [r for r in rows if r.get('role') == 'sompo'

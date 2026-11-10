@@ -1,4 +1,4 @@
--- SOMPO - Preparacao do Supabase para o projeto do sensor.
+-- Agro Risk Intelligence - Preparacao do Supabase para o projeto do sensor.
 --
 -- Rode ESTE script no SQL Editor do Supabase ANTES de tudo (assim que tiver acesso).
 -- Ele cria as tabelas que o ESP32 grava e a API le, a view de resumo, os indices e
@@ -117,7 +117,7 @@ revoke update, delete on public.eventos from anon, authenticated;
 -- ==========================================================================
 -- 5. Tabelas de negocio (cliente/sinistros/etc.) - protege SE existirem
 -- ==========================================================================
--- Se este projeto tambem tiver as tabelas de negocio da Sompo, ligamos RLS nelas
+-- Se este projeto tambem tiver as tabelas de negocio da Seguradora, ligamos RLS nelas
 -- para a chave do ESP32 nao conseguir ler dados de cliente (sem policy = anon
 -- perde acesso; a secret key da API ignora RLS e continua lendo tudo).
 -- Se elas NAO existirem (projeto so do sensor), sao ignoradas SEM erro.

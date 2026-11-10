@@ -1,7 +1,7 @@
--- SOMPO - Dados de exemplo para as tabelas de NEGOCIO (cliente/equipamentos/riscos/sinistros).
+-- Agro Risk Intelligence - Dados de exemplo para as tabelas de NEGOCIO (cliente/equipamentos/riscos/sinistros).
 --
 -- As tabelas do SENSOR (telemetria/eventos) sao alimentadas pelo ESP32 e ja tem dado real.
--- Estas quatro aqui sao o modelo de negocio do seguro (o ERD da Sompo) e ficam vazias num
+-- Estas quatro aqui sao o modelo de negocio do seguro (o ERD da Seguradora) e ficam vazias num
 -- projeto so de sensor - este script popula alguns registros de demonstracao para a
 -- apresentacao, respeitando as chaves estrangeiras:
 --

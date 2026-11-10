@@ -94,9 +94,9 @@ Confira se a linha `Deploy ok` termina com o hash do commit esperado.
 
 **Atalho (recomendado):** instale uma vez no CloudShell:
 ```bash
-echo "alias sompo-deploy='cd ~/agro-risk-intelligence && git fetch -q origin && git checkout -q main && git pull -q --ff-only && bash infra/sompo-deploy.sh'" >> ~/.bashrc && source ~/.bashrc
+echo "alias agro-deploy='cd ~/agro-risk-intelligence && git fetch -q origin && git checkout -q main && git pull -q --ff-only && bash infra/agro-deploy.sh'" >> ~/.bashrc && source ~/.bashrc
 ```
-Depois, cada deploy é só `sompo-deploy`: ele vai para o `main`, puxa, recusa publicar com
+Depois, cada deploy é só `agro-deploy`: ele vai para o `main`, puxa, recusa publicar com
 alterações locais ou clone diferente do GitHub, roda o `deploy-aws.ps1` e confirma que a imagem
 publicada tem o hash do último commit.
 

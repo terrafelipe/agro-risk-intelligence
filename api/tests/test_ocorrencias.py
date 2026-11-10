@@ -17,7 +17,7 @@ def banco(monkeypatch):
         'eventos': [{'id': 10, 'dispositivo_id': 'ESP-A', 'tipo': 'furto_capo', 'severidade': 2},
                     {'id': 11, 'dispositivo_id': 'ESP-C', 'tipo': 'chama_detectada', 'severidade': 5}],
         'usuario': [
-            {'id_usuario': 1, 'usuario': 'ana.sompo', 'role': 'sompo', 'fk_fazenda_id_fazenda': None},
+            {'id_usuario': 1, 'usuario': 'ana.seguradora', 'role': 'sompo', 'fk_fazenda_id_fazenda': None},
             {'id_usuario': 2, 'usuario': 'gestor.rita', 'role': 'gestor_fazenda', 'fk_fazenda_id_fazenda': 1},
             {'id_usuario': 3, 'usuario': 'gestor.vale', 'role': 'gestor_fazenda', 'fk_fazenda_id_fazenda': 2},
             {'id_usuario': 4, 'usuario': 'antigo', 'role': 'sompo', 'fk_fazenda_id_fazenda': None,
@@ -56,7 +56,7 @@ def banco(monkeypatch):
     return t
 
 
-def cliente(role='sompo', fazenda=None, usuario='ana.sompo'):
+def cliente(role='sompo', fazenda=None, usuario='ana.seguradora'):
     c = app.test_client()
     with c.session_transaction() as s:
         s.update(logado=True, role=role, fazenda_id=fazenda, usuario=usuario)
@@ -67,12 +67,12 @@ def gestor(fazenda=1):
     return cliente('gestor_fazenda', fazenda, 'gestor.rita')
 
 
-def test_sompo_abre_ocorrencia_a_partir_do_alerta(banco):
+def test_seguradora_abre_ocorrencia_a_partir_do_alerta(banco):
     r = cliente().post('/ocorrencias', json={'equipamento_id': 1, 'evento_id': 10, 'titulo': ' Capô aberto '})
     assert r.status_code == 201
     oc = banco['ocorrencias'][0]
     assert (oc['fazenda_id'], oc['equipamento_id'], oc['evento_id'], oc['tipo']) == (1, 1, 10, 'furto_capo')
-    assert oc['titulo'] == 'Capô aberto' and oc['criado_por'] == 'ana.sompo'
+    assert oc['titulo'] == 'Capô aberto' and oc['criado_por'] == 'ana.seguradora'
 
 
 def test_um_alerta_vira_uma_ocorrencia_so(banco):
@@ -124,7 +124,7 @@ def test_lista_traz_nomes_e_filtra_status(banco):
 def test_patch_valida_status_responsavel_e_nota(banco):
     cliente().post('/ocorrencias', json={'fazenda_id': 1, 'titulo': 'Capô'})
     assert cliente().patch('/ocorrencias/1', json={'status': 'fechada'}).json['erro'] == 'status_invalido'
-    # Responsavel: Sompo ou gestor DESTA fazenda, e nao excluido.
+    # Responsavel: Seguradora ou gestor DESTA fazenda, e nao excluido.
     assert cliente().patch('/ocorrencias/1', json={'responsavel_id': 3}).json['erro'] == 'responsavel_invalido'
     assert cliente().patch('/ocorrencias/1', json={'responsavel_id': 4}).json['erro'] == 'responsavel_invalido'
     assert cliente().patch('/ocorrencias/1', json={}).json['erro'] == 'nada_para_atualizar'
@@ -138,7 +138,7 @@ def test_patch_valida_status_responsavel_e_nota(banco):
 
 def test_responsaveis_possiveis_da_fazenda(banco):
     nomes = [u['usuario'] for u in cliente().get('/ocorrencias/responsaveis?fazenda=1').json['dados']]
-    assert nomes == ['ana.sompo', 'gestor.rita']
+    assert nomes == ['ana.seguradora', 'gestor.rita']
     assert gestor().get('/ocorrencias/responsaveis?fazenda=2').status_code == 403
 
 

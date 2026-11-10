@@ -42,7 +42,7 @@ Pior caso hoje: ~15 s entre o sensor e a tela.
   coluna) e passa pelos gatilhos `cadastro_serializar`/`cadastro_validar` normalmente.
 - Firmware antigo ignora a chave nova → compatível antes de regravar a placa.
 
-### 2. Firmware — `firmware/sompo_hardware_final/sompo_hardware_final.ino`
+### 2. Firmware — `firmware/agro_hardware_final/agro_hardware_final.ino`
 
 - `Rede::postarRpc`: em 2xx, ler o corpo e extrair `"telemetria_ms"`; guardar numa variável
   `volatile uint32_t intervaloTelemetria` (padrão `INTERVALO_TELEMETRIA_MS` = 10000).
@@ -122,5 +122,5 @@ Seção **"Telemetria atual"** (`#secTelemetria`) ganha, no cabeçalho, como no 
 
 ## Entrega até a Next
 
-1. Publicar o `9542f48` (pendente). 2. Rodar `ao_vivo.sql` no Supabase. 3. `sompo-deploy`.
+1. Publicar o `9542f48` (pendente). 2. Rodar `ao_vivo.sql` no Supabase. 3. `agro-deploy`.
 4. Regravar a placa. 5. Ensaio com o roteador do celular como Wi-Fi reserva (2.4 GHz, sem portal).

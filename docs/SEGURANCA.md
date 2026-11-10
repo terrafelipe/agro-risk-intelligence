@@ -10,7 +10,7 @@ afetar a demo fica atrás de uma flag/variável de ambiente, desligada por padr�
 
 ## O que já foi aplicado no código
 
-### Firmware ESP32 (`firmware/sompo_hardware_final/`)
+### Firmware ESP32 (`firmware/agro_hardware_final/`)
 - **Credenciais fora do repositório:** `segredos.h` fica ao lado do `.ino`, gitignorado; o repo traz
   só o `segredos.exemplo.h`.
 - **Só a publishable key vai no ESP32** — nunca a service_role. Quem a limita a INSERT são as
@@ -76,7 +76,7 @@ As chaves atuais já circularam (zip, Downloads). Antes de ir para produção:
 
 1. No painel do Supabase, gerar **novas** publishable e secret keys.
 2. Atualizar:
-   - `firmware/sompo_hardware_final/segredos.h` → nova **publishable** key;
+   - `firmware/agro_hardware_final/segredos.h` → nova **publishable** key;
    - `api/.env` → nova **secret** key.
 3. (Opcional) me avisar as chaves novas que eu atualizo os arquivos.
 

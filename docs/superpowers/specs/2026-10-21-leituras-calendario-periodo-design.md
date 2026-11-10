@@ -74,7 +74,7 @@ exportar CSV; escolher hora (só dias); biblioteca externa de calendário.
   (`docs/COMO_TESTAR.md` §8).
 - Horário de Brasília (UTC-3 fixo) para todas as datas; período máximo de 1 ano (365 dias de
   diferença entre as datas); sem dias futuros.
-- Sem SQL novo, se possível. O deploy continua manual (`sompo-deploy`).
+- Sem SQL novo, se possível. O deploy continua manual (`agro-deploy`).
 - Testes: pytest (backend) e Playwright em blocos (PC de casa tem pouca RAM). TDD.
 
 ## Decisões do Felipe (nas palavras dele, resumidas)

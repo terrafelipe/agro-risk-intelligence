@@ -1,4 +1,4 @@
-"""Mapa da fazenda (Inicio da Sompo > Mapa > Fazenda): satelite/ruas, cerca ilustrativa e maquinas."""
+"""Mapa da fazenda (Inicio da Seguradora > Mapa > Fazenda): satelite/ruas, cerca ilustrativa e maquinas."""
 from tests.test_painel import painel, pw, nav  # noqa: F401
 
 

@@ -1,4 +1,4 @@
--- SOMPO - Perfis de acesso (role-based) do painel.
+-- Agro Risk Intelligence - Perfis de acesso (role-based) do painel.
 --
 -- Cria a tabela `usuario` (login com role + fazenda vinculada) e semeia 3 logins de teste:
 --   sompo            -> role 'sompo'          (subscritor: ve tudo, cadastra fazendas/clientes)

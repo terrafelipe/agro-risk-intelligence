@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 RAIZ = Path(__file__).resolve().parents[2]
-INO = RAIZ / 'firmware' / 'sompo_hardware_final' / 'sompo_hardware_final.ino'
+INO = RAIZ / 'firmware' / 'agro_hardware_final' / 'agro_hardware_final.ino'
 SQL = RAIZ / 'firmware' / 'sql' / 'ao_vivo.sql'
 
 pytestmark = pytest.mark.skipif(not INO.exists(), reason='firmware/ ausente (imagem Docker)')

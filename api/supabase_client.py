@@ -103,7 +103,7 @@ def chamar_rpc(nome, payload):
 
 def _leituras_de(dispositivo, equipamento):
     # Com a maquina escolhida, o historico e o DELA (o ESP32 pode ter mudado de maquina);
-    # sem maquina, so o ID pedido (consulta de dados legados pela Sompo).
+    # sem maquina, so o ID pedido (consulta de dados legados pela Seguradora).
     if equipamento is not None:
         return {'equipamento_id': f'eq.{equipamento}'}
     return {'dispositivo_id': f'eq.{dispositivo}'}

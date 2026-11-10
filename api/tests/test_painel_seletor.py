@@ -10,7 +10,7 @@ AVISOS = """s => [...s.options].filter(o => o.disabled).map(o => o.textContent)"
 
 
 def _print(page, nome):
-    destino = Path(os.environ.get('TEMP', '.')) / 'sompo-seletor'
+    destino = Path(os.environ.get('TEMP', '.')) / 'agro-seletor'
     destino.mkdir(parents=True, exist_ok=True)
     largura = page.viewport_size['width']
     for tema in ('claro', 'escuro'):
@@ -21,7 +21,7 @@ def _print(page, nome):
 
 def _painel_sem_fazenda(page):
     # O fixture já abriu a Fazenda 1; recarregar volta ao estado de primeira entrada
-    # (perfil Sompo no Início, nenhuma fazenda escolhida) e daí vamos direto ao Painel.
+    # (perfil Seguradora no Início, nenhuma fazenda escolhida) e daí vamos direto ao Painel.
     page.reload()
     pw.expect(page.locator('#tituloView')).to_have_text('Início')
     pw.expect(page.locator('#fazendaSel option')).to_have_count(3)

@@ -325,7 +325,7 @@ def resolver_equipamento(fresco=False):
             if papel() != 'sompo':
                 raise FrotaErro('proibido', 403)
             g.equipamento = None
-            return dev  # consulta explícita de dados legados pela Sompo
+            return dev  # consulta explícita de dados legados pela Seguradora
         eq = rows[0]
         autorizar_fazenda(eq.get('fk_fazenda_id_fazenda'))
     g.equipamento = eq
@@ -468,7 +468,7 @@ def _resumos(fazendas, dias):
 
 @bp.get('/carteira')
 def carteira():
-    # Inicio da Sompo: fazendas e o resumo de cada uma numa chamada so.
+    # Inicio da Seguradora: fazendas e o resumo de cada uma numa chamada so.
     if papel() != 'sompo':
         raise FrotaErro('proibido', 403)
     fazendas = db.consultar_fazendas()

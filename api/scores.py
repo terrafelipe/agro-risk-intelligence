@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, List
 
-# Eixo de cada tipo de evento (contrato em CLAUDE-SOMPO.md).
+# Eixo de cada tipo de evento (contrato em o contrato do projeto).
 EIXO_POR_TIPO = {
     'furto_adulteracao': 'furto',     # vibracao com a maquina desligada (MPU-6050)
     'furto_cerca': 'furto',

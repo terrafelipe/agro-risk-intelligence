@@ -1,5 +1,5 @@
 # PLANO B de deploy (o principal e a AWS Lambda, ver docs/DEPLOY.md).
-# Blueprint do Render para o painel + API SOMPO (precisa ficar na RAIZ do repo).
+# Blueprint do Render para o painel + API Agro Risk Intelligence (precisa ficar na RAIZ do repo).
 # No Render: New > Blueprint > aponte para este repo. As envs com sync:false
 # NAO ficam no repositorio - voce preenche os valores no painel do Render.
 services:

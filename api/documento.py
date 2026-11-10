@@ -190,13 +190,13 @@ def montar_pdf(relatorio: Dict[str, Any], eventos: List[Dict[str, Any]]) -> byte
 
     pdf = RelatorioPDF()
     pdf.set_title(_latin1(f'Relatório de risco - {maquina}'))
-    pdf.set_author('SOMPO')
+    pdf.set_author('Agro Risk Intelligence')
     pdf.rodape = _latin1(f'Relatório de risco · {maquina}')
     pdf.add_page()
 
     pdf.set_font('Helvetica', 'B', 9)
     pdf.set_text_color(*VERMELHO)
-    pdf.cell(0, 5, 'SOMPO · Monitoramento de máquinas agrícolas', new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+    pdf.cell(0, 5, 'Agro Risk Intelligence · Monitoramento de máquinas agrícolas', new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.ln(1)
     pdf.set_font('Helvetica', 'B', 20)
     pdf.set_text_color(*TINTA)

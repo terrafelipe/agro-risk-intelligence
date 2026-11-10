@@ -157,8 +157,8 @@ agro-risk-intelligence/
 ├── firmware/                  # Código do ESP32 (Arduino IDE)
 │   ├── arduino-cli.yaml       # Config do arduino-cli portátil do repo
 │   ├── tools/                 # instalar-arduino-cli.ps1 (+ o CLI baixado)
-│   ├── sompo_hardware_final/
-│   │   ├── sompo_hardware_final.ino   # Sketch principal: setup() e loop() (~160 linhas)
+│   ├── agro_hardware_final/
+│   │   ├── agro_hardware_final.ino   # Sketch principal: setup() e loop() (~160 linhas)
 │   │   ├── config.h                   # Flags USAR_* (um sensor por vez), pinos e parâmetros
 │   │   ├── *.h                        # Um arquivo por assunto: estado, frota, rede, registro,
 │   │   │                              #   risco, alarme, painel e um por sensor (mpu, aht, gps...)
@@ -180,7 +180,7 @@ agro-risk-intelligence/
 
 ## 4. Firmware (ESP32)
 
-**Arquivos:** `firmware/sompo_hardware_final/sompo_hardware_final.ino` (setup/loop) e os `.h` da mesma pasta
+**Arquivos:** `firmware/agro_hardware_final/agro_hardware_final.ino` (setup/loop) e os `.h` da mesma pasta
 (o mapa de arquivos está no comentário do topo do `.ino`; as flags `USAR_*` ficam em `config.h`).
 **Placa:** ESP32 DevKit V1 · **FQBN** `esp32:esp32:esp32` · Monitor Serial **115200**.
 
@@ -371,7 +371,7 @@ Dois perfis logam no mesmo sistema (demo acadêmica — senha em texto plano, se
 - **Gestor de Fazenda**: vê **só** a telemetria/risco da própria fazenda; abas de cadastro
   ocultas. O **backend força** o filtro por dispositivo (`_dispositivo_para`): nem passando
   `?dispositivo=` na URL o gestor lê outra fazenda; as rotas de cadastro respondem **403**
-  (`@somente_sompo`).
+  (`@somente_seguradora`).
 
 O perfil vem da tabela `usuario` (com a fazenda vinculada embutida via PostgREST). Sem
 sessão (modo demo, `PAINEL_SENHA` vazia) o padrão é `sompo`, preservando o comportamento
@@ -531,7 +531,7 @@ Compilar pelo **arduino-cli portátil do repo** (sem instalação global, sem Pl
 ```powershell
 .\firmware\tools\instalar-arduino-cli.ps1   # 1ª vez: baixa o CLI + core ESP32
 .\firmware\tools\arduino-cli.exe --config-file firmware\arduino-cli.yaml `
-  compile --fqbn esp32:esp32:esp32 firmware\sompo_hardware_final
+  compile --fqbn esp32:esp32:esp32 firmware\agro_hardware_final
 ```
 
 Ou pela **Arduino IDE / VS Code** (extensão *Arduino Community Edition*, já configurada em

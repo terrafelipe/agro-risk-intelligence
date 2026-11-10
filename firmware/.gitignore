@@ -8,5 +8,5 @@ build/
 # Recrie com: .\firmware\tools\instalar-arduino-cli.ps1
 tools/arduino-cli.exe
 
-# Credenciais locais - use sompo_hardware_final/segredos.exemplo.h como modelo
-sompo_hardware_final/segredos.h
+# Credenciais locais - use agro_hardware_final/segredos.exemplo.h como modelo
+agro_hardware_final/segredos.h

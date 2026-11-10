@@ -1,4 +1,4 @@
-# Imagem de producao do painel + API SOMPO (Flask servido por waitress).
+# Imagem de producao do painel + API Agro Risk Intelligence (Flask servido por waitress).
 FROM python:3.12-slim
 
 # Nao gerar .pyc e log sem buffer (melhor para os logs do Render).

@@ -68,7 +68,7 @@ def test_carteira_traz_todas_as_fazendas_com_o_mesmo_resumo_da_rota_individual(b
     assert dados[1]['alertas_recentes'] == []          # o evento do ESP-A nao vaza para a Vale Verde
 
 
-def test_carteira_e_so_da_sompo(banco):
+def test_carteira_e_so_da_seguradora(banco):
     assert gestor().get('/carteira').status_code == 403
 
 
@@ -98,7 +98,7 @@ def test_maquina_e_fazenda_nao_sao_buscadas_de_novo_em_20s(banco):
 
 
 def test_cache_nao_vaza_permissao_entre_fazendas(banco):
-    # A Sompo le a maquina 1 (fica no cache); o gestor da fazenda 2 continua barrado.
+    # A Seguradora le a maquina 1 (fica no cache); o gestor da fazenda 2 continua barrado.
     sompo = app.test_client()
     assert sompo.get('/telemetria?equipamento=1').status_code == 200
     assert gestor(2).get('/telemetria?equipamento=1').status_code == 403

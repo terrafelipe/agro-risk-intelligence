@@ -73,7 +73,7 @@ def _depois(tabela, equipamento_id, desde):
 def ao_vivo():
     frota.resolver_equipamento(fresco=True)   # ao_vivo_ate nao pode vir do cache de 20 s
     eq = getattr(g, 'equipamento', None)
-    if not eq:   # Sompo consultando ID legado sem maquina: o ao vivo e por maquina
+    if not eq:   # Seguradora consultando ID legado sem maquina: o ao vivo e por maquina
         raise frota.FrotaErro('equipamento_obrigatorio')
     agora = datetime.now(timezone.utc)
     desde = _desde(request.args.get('desde'), agora)

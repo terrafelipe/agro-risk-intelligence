@@ -207,4 +207,4 @@ Entradas e falhas que o spec implica e que as tarefas abaixo fixam com teste:
 - [ ] **Step 1:** documentar as rotas e o componente nos três arquivos; conferir que `docs/COMO_TESTAR.md` §8 continua certo (CSS gerado).
 - [ ] **Step 2: Suíte inteira** — backend: `pytest` dos arquivos que não começam com `test_painel`; navegador em três blocos (`ls tests/test_painel*.py | split -l 10`). Mostrar a saída; qualquer vermelho é corrigido antes de seguir.
 - [ ] **Step 3: Revisão do Codex** com `/revisar` (modelo e esforço perguntados ao Felipe na hora), corrigir os achados sustentados, repetir a suíte afetada.
-- [ ] **Step 4: Commit final** com `Closes #4` e pedir ao Felipe o `git push` (só os commits desta Issue); depois do push, conferir `gh issue view 4` e avisar do `sompo-deploy`. Não precisa de SQL novo.
+- [ ] **Step 4: Commit final** com `Closes #4` e pedir ao Felipe o `git push` (só os commits desta Issue); depois do push, conferir `gh issue view 4` e avisar do `agro-deploy`. Não precisa de SQL novo.

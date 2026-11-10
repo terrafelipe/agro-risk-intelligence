@@ -56,7 +56,7 @@ def test_gestor_sem_coordenadas_ve_orientacao_sem_edicao(painel):
     _abrir_inicio_gestor(page, state)
     mapa = page.locator('#gMapaFazenda')
     pw.expect(mapa.locator('[data-mf-vazio]')).to_be_visible()
-    pw.expect(mapa).to_contain_text('Peça à Sompo para informar a localização da fazenda.')
+    pw.expect(mapa).to_contain_text('Peça à Seguradora para informar a localização da fazenda.')
     pw.expect(mapa.locator('[data-mf-mapa]')).to_be_hidden()
     assert mapa.locator('[data-mf-informar]').count() == 0
     assert not state['errors']

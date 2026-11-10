@@ -15,7 +15,7 @@ O modo ao vivo (telemetria a cada 2 s na demo da FIAP Next) está **pronto, test
 | Correções de código das pendências antigas | Feitas |
 | Mesclar no `main` e enviar ao GitHub | **Falta (você decide)** |
 | Rodar `ao_vivo.sql` no Supabase | **Falta (você)** |
-| Publicar na AWS (`sompo-deploy`) | **Falta (você)** |
+| Publicar na AWS (`agro-deploy`) | **Falta (você)** |
 | Regravar a placa e testar na bancada | **Falta (você)** |
 | Medir desempenho em produção | Falta (só depois do deploy) |
 
@@ -106,7 +106,7 @@ SQL Editor do projeto `ljkfuwvkmczpmjupxnxw` → colar o conteúdo de `firmware/
 
 ### Passo 3 · Publicar na AWS — você
 
-Learner Lab → Start Lab → console (N. Virginia) → CloudShell → `sompo-deploy`.
+Learner Lab → Start Lab → console (N. Virginia) → CloudShell → `agro-deploy`.
 Confira no "Deploy ok" o hash do topo do `main` (hoje `dcd5c32`). Este deploy também leva a correção do mapa (Passo 3b), o cache de 20 s (site mais rápido) e o firmware dividido em arquivos `.h` (abra a pasta toda no Arduino IDE). Depois, quem estava logado entra de novo uma vez.
 
 ### Passo 3b · Conferir o mapa depois do deploy — você
@@ -118,7 +118,7 @@ Se ainda der 403, a causa é outra (ex.: bloqueio por volume de uso do OSM): avi
 
 ### Passo 4 · Regravar a placa e testar na bancada — você
 
-1. Arduino IDE → abrir `firmware/sompo_hardware_final`, placa **ESP32 Dev Module**.
+1. Arduino IDE → abrir `firmware/agro_hardware_final`, placa **ESP32 Dev Module**.
 2. Criar o `segredos.h` real a partir de `segredos.exemplo.h` (**nunca commitar**).
 3. Gravar. Esperado: 86% da flash.
 4. No painel: máquina → *Telemetria atual* → **Ao vivo**. Esperado:

@@ -2,7 +2,7 @@
 
 O role vem da sessao (setado no login). Aqui usamos client.session_transaction()
 para simular cada perfil. A conftest ja roda em modo demo (PAINEL_SENHA vazia), entao
-o gate de login nao interfere - o que testamos e a camada de perfil (somente_sompo e
+o gate de login nao interfere - o que testamos e a camada de perfil (somente_seguradora e
 o escopo de dispositivo do gestor).
 """
 from unittest.mock import patch
@@ -45,7 +45,7 @@ def test_gestor_nao_lista_fazendas():
     assert response.status_code == 403
 
 
-def test_sompo_cadastra_fazenda():
+def test_seguradora_cadastra_fazenda():
     client = app.test_client()
     _login_como(client, 'sompo')
     with patch('app.inserir_tabela', return_value={'id_fazenda': 1, 'nome': 'Nova'}):
@@ -65,7 +65,7 @@ def test_sessao_legada_sem_fazenda_nao_libera_dispositivo():
     mock_tel.assert_not_called()
 
 
-def test_sompo_ve_o_dispositivo_pedido():
+def test_seguradora_ve_o_dispositivo_pedido():
     client = app.test_client()
     _login_como(client, 'sompo')
     with patch('app.consultar_telemetria', return_value=[]) as mock_tel:

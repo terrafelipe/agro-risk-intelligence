@@ -1,13 +1,13 @@
-# setup.ps1 - Prepara o projeto SOMPO de uma vez (API + firmware).
+# setup.ps1 - Prepara o projeto Agro Risk Intelligence de uma vez (API + firmware).
 # Rode na raiz:  .\setup.ps1
 # Seguro para rodar de novo: nao sobrescreve .env nem segredos.h ja preenchidos.
 
 $ErrorActionPreference = 'Stop'
 $raiz = $PSScriptRoot
 $api  = Join-Path $raiz 'api'
-$fw   = Join-Path $raiz 'firmware\sompo_hardware_final'
+$fw   = Join-Path $raiz 'firmware\agro_hardware_final'
 
-Write-Host "== SOMPO :: setup ==" -ForegroundColor Cyan
+Write-Host "== Agro Risk Intelligence :: setup ==" -ForegroundColor Cyan
 
 # --- 1. Ambiente virtual da API ---
 $venvPy = Join-Path $api 'venv\Scripts\python.exe'
@@ -39,10 +39,10 @@ if (Test-Path $env_) {
 # Consumido pelo .ino quando USAR_WIFI = 1 (Wi-Fi + envio ao Supabase).
 $seg = Join-Path $fw 'segredos.h'
 if (Test-Path $seg) {
-    Write-Host "[ok]  firmware\sompo_hardware_final\segredos.h ja existe (nao mexi)" -ForegroundColor Green
+    Write-Host "[ok]  firmware\agro_hardware_final\segredos.h ja existe (nao mexi)" -ForegroundColor Green
 } else {
     Copy-Item (Join-Path $fw 'segredos.exemplo.h') $seg
-    Write-Host "[novo] firmware\sompo_hardware_final\segredos.h criado a partir do exemplo" -ForegroundColor Yellow
+    Write-Host "[novo] firmware\agro_hardware_final\segredos.h criado a partir do exemplo" -ForegroundColor Yellow
 }
 
 # --- Resumo do que falta ---
@@ -51,11 +51,11 @@ Write-Host "== Falta preencher (uma vez) ==" -ForegroundColor Cyan
 Write-Host "  api\.env"
 Write-Host "    SUPABASE_URL          -> Project URL (Settings -> API), ex: https://xxxx.supabase.co"
 Write-Host "    SUPABASE_SECRET_KEY   -> service_role / secret key (fica so na API)"
-Write-Host "  firmware\sompo_hardware_final\segredos.h"
+Write-Host "  firmware\agro_hardware_final\segredos.h"
 Write-Host "    WIFI_SSID_CFG/PASSWORD -> hotspot do celular em 2.4 GHz (o ESP32 nao enxerga 5 GHz)"
 Write-Host "    SUPABASE_URL_CFG       -> mesma Project URL"
 Write-Host "    SUPABASE_CHAVE_CFG     -> anon / publishable key (sb_publishable_...)"
 Write-Host ""
 Write-Host "Testar a API (offline):  cd api ; .\venv\Scripts\python.exe -m pytest" -ForegroundColor Cyan
-Write-Host "Firmware: abrir firmware\sompo_hardware_final\sompo_hardware_final.ino na Arduino IDE" -ForegroundColor Cyan
+Write-Host "Firmware: abrir firmware\agro_hardware_final\agro_hardware_final.ino na Arduino IDE" -ForegroundColor Cyan
 Write-Host "Setup concluido." -ForegroundColor Green

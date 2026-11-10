@@ -28,7 +28,7 @@ def _sobre(page, seg):
 
 
 def _print(page, nome):
-    destino = os.getenv('SOMPO_TEST_ARTIFACTS')
+    destino = os.getenv('AGRO_TEST_ARTIFACTS')
     if destino:
         page.wait_for_timeout(250)   # fim do fade do tooltip
         Path(destino).mkdir(parents=True, exist_ok=True)

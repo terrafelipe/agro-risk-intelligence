@@ -26,9 +26,9 @@ def _cores(page):
 
 
 def _print(page, tema):
-    """Print do cartao "De onde vem o score" quando SOMPO_TEST_ARTIFACTS aponta uma pasta."""
-    if os.getenv('SOMPO_TEST_ARTIFACTS'):
-        destino = Path(os.environ['SOMPO_TEST_ARTIFACTS'])
+    """Print do cartao "De onde vem o score" quando AGRO_TEST_ARTIFACTS aponta uma pasta."""
+    if os.getenv('AGRO_TEST_ARTIFACTS'):
+        destino = Path(os.environ['AGRO_TEST_ARTIFACTS'])
         destino.mkdir(parents=True, exist_ok=True)
         cartao = page.locator('#detFurto').locator('xpath=..')
         cartao.scroll_into_view_if_needed()
