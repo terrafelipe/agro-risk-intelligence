@@ -15,6 +15,7 @@
 #define USAR_WIFI         1   // ULTIMO PASSO: envio ao Supabase (exige segredos.h)
 
 #define DIAG_I2C          1   // scanner I2C no setup (ajuda nos passos 1 e 2)
+#define DIAG_INJETAR_INVALIDO 0 // 1 = demo: a cada 7 leituras injeta um valor absurdo p/ mostrar a validacao no Serial
 #define DIAG_TELEMETRIA   0   // imprime o JSON no Serial; funciona com USAR_WIFI 0
 
 // ---------- Pinos ----------
@@ -56,6 +57,22 @@
 #define TEMP_ESCAPE_CRITICO 60.0        // C
 #define TRAVA_EVENTO_MS     5000         // anti-spam dos eventos continuos
 #define GRAVIDADE           9.80665      // m/s2 por g
+
+// Validacao das leituras (limites FISICOS do componente, nao limiares de alerta).
+// Fora da faixa = leitura invalida: descartada, mantem o ultimo valor valido.
+#define FALHAS_SEGUIDAS_ERRO  5        // leituras invalidas em sequencia = sensor em falha (aviso no Serial; campo sai da telemetria)
+#define AHT_TEMP_MIN        -40.0      // C   - faixa do AHT10
+#define AHT_TEMP_MAX         85.0
+#define AHT_UMID_MIN          0.0      // %UR
+#define AHT_UMID_MAX        100.0
+#define AHT_SALTO_TEMP_MAX   15.0      // C entre duas leituras (1 s): mais que isso e incoerente
+#define TERMOPAR_MIN          0.0      // C   - MAX6675 so mede de 0 a 1023,75
+#define TERMOPAR_MAX       1023.75
+#define TERMOPAR_SALTO_MAX  150.0      // C entre duas leituras (1 s)
+#define CHAMA_RAW_MIN         0        // ADC de 12 bits
+#define CHAMA_RAW_MAX      4094        // 4095 = pino sem sinal / fio solto (satura em cima)
+#define ACEL_MAG_MAX         80.0      // m/s2 - o MPU esta em +-8 g (78,5 m/s2); acima e lixo
+#define GPS_IDADE_MAX_MS   5000        // fix mais velho que isso nao vale como posicao atual
 
 // Tom do alarme (buzzer continuo). Passivo? o volume e maximo perto da frequencia
 // de RESSONANCIA do buzzer (varia por modelo, tipico 2000-4000 Hz) - ajuste por ouvido.

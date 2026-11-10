@@ -82,7 +82,7 @@
 void setup() {
   Serial.begin(115200);
   delay(500);
-  Serial.println("=== Sistema Seguradora - Inicializando sensores ===");
+  Serial.println("=== Agro Risk Intelligence - Inicializando sensores ===");
 
 #if USAR_MPU || USAR_AHT || DIAG_I2C
   Wire.begin(I2C_SDA, I2C_SCL);

@@ -3,6 +3,7 @@
 #include "bibliotecas.h"
 #include "estado.h"
 #include "evento.h"
+#include "validacao.h"
 
 namespace Mpu {
 #if USAR_MPU
@@ -10,6 +11,8 @@ namespace Mpu {
   bool ok = false;
   int amostrasAcima = 0;
   unsigned long ultimoEvento = 0;
+  unsigned long contInj = 0;
+  Validacao::Canal canal = Validacao::novoCanal("MPU-6050 aceleracao");
 
   // Media da magnitude com a placa parada. Usar o valor medido (em vez de 9.8
   // fixo) tira o offset do sensor da conta do limiar.
@@ -46,9 +49,14 @@ namespace Mpu {
     if (!ok) return;
     sensors_event_t a, g, t;
     dev.getEvent(&a, &g, &t);
-    Estado.magnitudeAccel = sqrt(a.acceleration.x * a.acceleration.x +
-                                  a.acceleration.y * a.acceleration.y +
-                                  a.acceleration.z * a.acceleration.z);
+    float mag = Validacao::injetar(sqrt(a.acceleration.x * a.acceleration.x +
+                                         a.acceleration.y * a.acceleration.y +
+                                         a.acceleration.z * a.acceleration.z), contInj);
+    // NaN ou magnitude acima do fundo de escala (+-8 g) = leitura corrompida do barramento I2C.
+    bool valida = Validacao::naFaixa(mag, 0.0, ACEL_MAG_MAX);
+    Validacao::avisar(canal, Validacao::registrar(canal, valida, FALHAS_SEGUIDAS_ERRO), mag, "0..80 m/s2");
+    if (!valida) return;   // nao deixa lixo virar "vibracao" nem falso alarme de furto
+    Estado.magnitudeAccel = mag;
     float desvio = fabs(Estado.magnitudeAccel - Estado.baselineAccel);
 
     // A coluna 'vibracao' guarda g - o historico foi gravado assim. Sem esta
