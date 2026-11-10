@@ -1,6 +1,6 @@
-# Plano: modo ao vivo e pendências do painel SOMPO
+# Plano: modo ao vivo e pendências do painel Agro Risk Intelligence
 
-Atualizado em 2026-10-18 · `main` mesclado e enviado ao GitHub (topo: `dcd5c32`) · Issue [#2](https://github.com/terrafelipe/sompo-sprint3/issues/2)
+Atualizado em 2026-10-18 · `main` mesclado e enviado ao GitHub (topo: `dcd5c32`) · Issue [#2](https://github.com/terrafelipe/agro-risk-intelligence/issues/2)
 
 ## Em uma frase
 
@@ -89,7 +89,7 @@ Os passos 1 a 4 são o caminho até a demo. Os passos 5 e 6 podem esperar.
 O repositório é **público**; o push não publica o site. Pelo clone do OneDrive:
 
 ```powershell
-cd "C:\Users\USUARIO\OneDrive - Fiap-Faculdade de Informática e Administração Paulista\FIAP\SOMPO\sompo-sprint3"
+cd "C:\Users\USUARIO\OneDrive - Fiap-Faculdade de Informática e Administração Paulista\FIAP\agro-risk-intelligence"
 git status                      # só o .vscode/c_cpp_properties.json deve aparecer; ele NÃO vai junto
 git checkout main
 git merge --ff-only ao-vivo-integracao
@@ -133,7 +133,7 @@ Se ainda der 403, a causa é outra (ex.: bloqueio por volume de uso do OSM): avi
 ### Passo 5 · Pendências de produção — você
 
 - [ ] **(recomendado, não esquecer) Copiar o `PROXY_SEGREDO` para o Cloudflare Pages.** Serve para o limite de tentativas do login usar o IP real de cada visitante (sem isso, um visitante pode travar o login de outro por 15 min). Passo a passo:
-  1. CloudShell: `tail -n 3 ~/sompo-sprint3/infra/.env.aws` e copiar o valor depois de `PROXY_SEGREDO=` (**não colar no chat nem no git**).
+  1. CloudShell: `tail -n 3 ~/agro-risk-intelligence/infra/.env.aws` e copiar o valor depois de `PROXY_SEGREDO=` (**não colar no chat nem no git**).
   2. Cloudflare → projeto Pages `sompo-painel` → Settings → Variables and Secrets → Add: nome `PROXY_SEGREDO`, tipo **Secret**, valor copiado.
   3. Republicar o `infra/pages` (Deployments → Retry/redeploy, ou o upload da pasta como da última vez). Detalhes em `docs/DEPLOY.md` (linha do `PROXY_SEGREDO`).
 - [ ] (opcional) Trocar a `PAINEL_SENHA` do `.env.aws` por valor aleatório (ela só liga o login).
@@ -171,4 +171,4 @@ Se ainda der 403, a causa é outra (ex.: bloqueio por volume de uso do OSM): avi
 - Spec: `docs/superpowers/specs/2026-10-06-ao-vivo-design.md` (mockup ao lado) · plano de implementação: `docs/superpowers/plans/2026-10-06-ao-vivo.md`
 - Ordem das migrações SQL: `docs/ATIVAR_FROTA.md`
 - Deploy: `docs/DEPLOY.md` · testes: `docs/COMO_TESTAR.md`
-- Estado do projeto: ficha `projetos/sompo-sprint3.md` no AIOS
+- Estado do projeto: ficha `projetos/agro-risk-intelligence.md` no AIOS

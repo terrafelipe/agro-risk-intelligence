@@ -1,4 +1,4 @@
-# Deploy — Painel SOMPO na AWS Lambda + Cloudflare Pages
+# Deploy — Painel Agro Risk Intelligence na AWS Lambda + Cloudflare Pages
 
 O **painel + API** (o mesmo app Flask) roda na **AWS Lambda** como imagem Docker, exposto por uma
 **Function URL** (HTTPS). Na frente dela, um proxy grátis no **Cloudflare Pages** dá a URL limpa:
@@ -79,22 +79,22 @@ credenciais do lab — não precisa de nada instalado no PC.
 1. Learner Lab → **Start Lab** → abra o console → região **N. Virginia (us-east-1)** → CloudShell.
 2. Primeira vez:
    ```bash
-   git clone https://github.com/terrafelipe/sompo-sprint3.git
-   cd sompo-sprint3
+   git clone https://github.com/terrafelipe/agro-risk-intelligence.git
+   cd agro-risk-intelligence
    cp infra/.env.aws.example infra/.env.aws
    nano infra/.env.aws        # preencher (seção 2); Ctrl+O, Enter, Ctrl+X
    pwsh infra/deploy-aws.ps1
    ```
 3. Próximos deploys (o `.env.aws` continua lá):
    ```bash
-   cd sompo-sprint3 && git checkout main && git pull && pwsh infra/deploy-aws.ps1
+   cd agro-risk-intelligence && git checkout main && git pull && pwsh infra/deploy-aws.ps1
    ```
 
 Confira se a linha `Deploy ok` termina com o hash do commit esperado.
 
 **Atalho (recomendado):** instale uma vez no CloudShell:
 ```bash
-echo "alias sompo-deploy='cd ~/sompo-sprint3 && git fetch -q origin && git checkout -q main && git pull -q --ff-only && bash infra/sompo-deploy.sh'" >> ~/.bashrc && source ~/.bashrc
+echo "alias sompo-deploy='cd ~/agro-risk-intelligence && git fetch -q origin && git checkout -q main && git pull -q --ff-only && bash infra/sompo-deploy.sh'" >> ~/.bashrc && source ~/.bashrc
 ```
 Depois, cada deploy é só `sompo-deploy`: ele vai para o `main`, puxa, recusa publicar com
 alterações locais ou clone diferente do GitHub, roda o `deploy-aws.ps1` e confirma que a imagem

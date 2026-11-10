@@ -1,6 +1,6 @@
-# SOMPO — Monitor de Furto e Incêndio para Máquinas Agrícolas
+# Agro Risk Intelligence — Monitor de Furto e Incêndio para Máquinas Agrícolas
 
-Projeto acadêmico da **FIAP** para a **Sompo Seguros**. Sistema IoT embarcado em
+Projeto acadêmico da **FIAP** para uma **seguradora parceira**. Sistema IoT embarcado em
 máquina agrícola (trator) que detecta **furto/roubo** e **incêndio**, envia telemetria e eventos
 para a nuvem, e gera **relatórios de risco** — inclusive um relatório interpretado por IA — para
 apoiar a seguradora.
@@ -112,12 +112,12 @@ login na **AWS Lambda** (URL limpa via Cloudflare Pages: https://sompo-painel.pa
 | `GET /relatorio/risco` | Relatório interpretado pela IA (com fallback gracioso) |
 | `GET /relatorio/risco.pdf` | O mesmo relatório em PDF para download |
 | `GET /me` | Perfil do usuário logado (role + fazenda vinculada) |
-| `GET/POST /clientes` | Lista/cadastra clientes — **só perfil Sompo** (403 para gestor) |
-| `GET/POST /fazendas` | Lista/cadastra fazendas — **só perfil Sompo** (403 para gestor) |
-| `PATCH /fazendas/<id>` | Edita nome, localização, área e coordenadas do mapa — **só perfil Sompo**; 409 se `mapa_ocorrencias.sql` não rodou |
+| `GET/POST /clientes` | Lista/cadastra clientes — **só perfil Seguradora** (403 para gestor) |
+| `GET/POST /fazendas` | Lista/cadastra fazendas — **só perfil Seguradora** (403 para gestor) |
+| `PATCH /fazendas/<id>` | Edita nome, localização, área e coordenadas do mapa — **só perfil Seguradora**; 409 se `mapa_ocorrencias.sql` não rodou |
 | `GET/POST /ocorrencias` | Lista (filtros `fazenda`, `status`) e abre ocorrências, a partir de um alerta ou manual; gestor só na própria fazenda |
 | `PATCH /ocorrencias/<id>` | Muda situação (aberta, em verificação, resolvida), responsável e nota |
-| `GET /ocorrencias/responsaveis?fazenda=<id>` | Quem pode assumir: usuários Sompo e gestores da fazenda |
+| `GET /ocorrencias/responsaveis?fazenda=<id>` | Quem pode assumir: usuários Seguradora e gestores da fazenda |
 | `GET/POST /equipamentos` | Lista/cadastra máquinas dentro do escopo da fazenda |
 | `GET/POST /operadores` | Lista/cadastra operadores RFID, sem criar login |
 | `GET /operacoes` | Histórico paginado de sessões dos operadores (`?dias=` ou `?de=&ate=`) |
@@ -128,7 +128,7 @@ login na **AWS Lambda** (URL limpa via Cloudflare Pages: https://sompo-painel.pa
 O painel tem **dois perfis** logando no mesmo sistema, com telas e dados diferentes (demonstração
 acadêmica — dados simulados, sem hashing de senha):
 
-- **Sompo** (subscritor): vê o portfólio inteiro, cadastra fazendas/clientes e troca entre as
+- **Seguradora** (subscritor): vê o portfólio inteiro, cadastra fazendas/clientes e troca entre as
   fazendas por um seletor no topo.
 - **Gestor de Fazenda**: vê só a telemetria/risco da **própria** fazenda; as abas de cadastro
   ficam ocultas. O backend força o filtro por dispositivo — nem passando `?dispositivo=` na URL o
@@ -142,13 +142,13 @@ tabela `usuario` e semeia os logins de teste).
 
 | Usuário | Perfil | Enxerga |
 |---|---|---|
-| `sompo` | Sompo | todas as fazendas + abas de cadastro |
+| `sompo` | Seguradora | todas as fazendas + abas de cadastro |
 | `gestor.santarita` | Gestor de Fazenda | só a Fazenda Santa Rita (`SOMPO-ESP32`) |
 | `gestor.valeverde` | Gestor de Fazenda | só a Fazenda Vale Verde (`SOMPO-ESP32-SIM`) |
 
 As senhas **não ficam no repositório** (ele é público). O banco guarda só o hash; peça as senhas
 ao responsável pelo projeto. Para trocar: no painel, menu do usuário → **Trocar minha senha**
-(pede a atual); o perfil Sompo troca a de qualquer login em Usuários → detalhe → **Trocar senha**.
+(pede a atual); o perfil Seguradora troca a de qualquer login em Usuários → detalhe → **Trocar senha**.
 Sem o painel: `python tools/definir_senha.py <usuario>`. Trocar a senha derruba as sessões abertas.
 
 > Para demonstrar a troca de perfis ao vivo, o login precisa estar ligado (`PAINEL_SENHA` definida

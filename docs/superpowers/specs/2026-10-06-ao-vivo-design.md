@@ -56,7 +56,7 @@ Pior caso hoje: ~15 s entre o sensor e a tela.
 ### 3. API (Flask)
 
 **`POST /equipamentos/<id>/ao-vivo`** (blueprint `frota`), corpo `{"ligar": true|false}`:
-- Autorização: `frota.equipamento(id)` (Sompo ou gestor da fazenda dona; excluído → 404).
+- Autorização: `frota.equipamento(id)` (Seguradora ou gestor da fazenda dona; excluído → 404).
 - Máquina sem `dispositivo_id` → 409 `equipamento_sem_dispositivo`.
 - `ligar` não booleano → 400 `ligar_invalido`.
 - Liga: `ao_vivo_ate = agora + 2 h` (UTC). Desliga: `ao_vivo_ate = null`.

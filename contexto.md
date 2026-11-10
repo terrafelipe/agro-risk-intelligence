@@ -1,4 +1,4 @@
-# Contexto do Projeto — SOMPO (Sprint 3)
+# Contexto do Projeto — Agro Risk Intelligence (Sprint 3)
 
 > Atualizado em 17/09/2026. A revisão abaixo descreve o modelo atual de frota e
 > prevalece sobre observações históricas de bancada.
@@ -67,10 +67,10 @@
 
 ## 1. Visão geral
 
-**SOMPO — Monitor de Furto e Incêndio para Máquinas Agrícolas.**
+**Agro Risk Intelligence — Monitor de Furto e Incêndio para Máquinas Agrícolas.**
 
 Projeto acadêmico da **FIAP** (Tecnologia em Inteligência Artificial) para a
-**Sompo Seguros**, entregue na **Sprint 3**. É um sistema **IoT embarcado** numa máquina
+**uma seguradora parceira**, entregue na **Sprint 3**. É um sistema **IoT embarcado** numa máquina
 agrícola (trator/escavadeira) que:
 
 1. **Detecta furto/roubo e incêndio** por meio de sensores num ESP32;
@@ -84,7 +84,7 @@ Apenas **furto/roubo** e **incêndio** — os dois riscos que ainda **não têm 
 tecnológica** em máquinas agrícolas. Colisão, medição de distância e previsão do tempo
 estão **fora de escopo**: máquinas novas já saem de fábrica com esses sensores.
 
-- **Repositório:** `github.com/terrafelipe/sompo-sprint3` (branch principal: `main`)
+- **Repositório:** `github.com/terrafelipe/agro-risk-intelligence` (branch principal: `main`)
 - **Produção (painel):** **AWS Lambda** (Learner Lab) atrás do **Cloudflare Pages** —
   https://sompo-painel.pages.dev. Deploy manual por script (§9).
 - **Banco:** projeto **Supabase** `ljkfuwvkmczpmjupxnxw.supabase.co`.
@@ -126,7 +126,7 @@ Pontos-chave da arquitetura:
 ## 3. Estrutura de diretórios
 
 ```
-sompo-sprint3/
+agro-risk-intelligence/
 ├── README.md                  # Visão geral do projeto
 ├── contexto.md                # (este arquivo)
 ├── render.yaml                # Blueprint do Render (plano B de deploy; fica na RAIZ)
@@ -352,13 +352,13 @@ Arquivo central: `api/app.py`. Servida por **waitress** em produção; `python a
 | `GET /relatorio/bruto` | Relatório factual |
 | `GET /relatorio/risco` | Relatório interpretado por IA (fallback gracioso, sempre 200) |
 | `GET /relatorio/risco.pdf` | O mesmo relatório em PDF para download |
-| `GET/POST /clientes` | Lista/cadastra clientes — **só perfil Sompo** (403 p/ gestor) |
-| `GET/POST /fazendas` | Lista/cadastra fazendas — **só perfil Sompo** |
-| `PATCH /fazendas/<id>` | Edita dados e coordenadas — **só Sompo**; 409 sem a migração |
+| `GET/POST /clientes` | Lista/cadastra clientes — **só perfil Seguradora** (403 p/ gestor) |
+| `GET/POST /fazendas` | Lista/cadastra fazendas — **só perfil Seguradora** |
+| `PATCH /fazendas/<id>` | Edita dados e coordenadas — **só Seguradora**; 409 sem a migração |
 | `GET /fazendas/<id>/resumo` | Máquinas, comunicação, scores e os 10 alertas mais recentes |
 | `GET/POST /ocorrencias`, `PATCH /ocorrencias/<id>` | Fila de ocorrências (escopo por perfil) |
-| `GET /ocorrencias/responsaveis?fazenda=` | Quem pode assumir (Sompo + gestores da fazenda) |
-| `GET/POST /usuarios` | Lista/cadastra logins do painel — **só perfil Sompo** |
+| `GET /ocorrencias/responsaveis?fazenda=` | Quem pode assumir (Seguradora + gestores da fazenda) |
+| `GET/POST /usuarios` | Lista/cadastra logins do painel — **só perfil Seguradora** |
 
 Padrão de dispositivo: `SOMPO-ESP32` (tem de bater com o `DISPOSITIVO_ID` do firmware).
 
@@ -366,7 +366,7 @@ Padrão de dispositivo: `SOMPO-ESP32` (tem de bater com o `DISPOSITIVO_ID` do fi
 
 Dois perfis logam no mesmo sistema (demo acadêmica — senha em texto plano, sem hashing):
 
-- **Sompo** (subscritor): vê o **portfólio inteiro**, cadastra fazendas/clientes/usuários e
+- **Seguradora** (subscritor): vê o **portfólio inteiro**, cadastra fazendas/clientes/usuários e
   troca de fazenda por um seletor no topo.
 - **Gestor de Fazenda**: vê **só** a telemetria/risco da própria fazenda; abas de cadastro
   ocultas. O **backend força** o filtro por dispositivo (`_dispositivo_para`): nem passando
@@ -410,17 +410,17 @@ aberto.
 - Busca dados com `getJSON()` em caminhos **relativos**; **auto-refresh a cada 5 s**, que
   **pausa** com a aba escondida ou após 15 min sem interação (faixa "Atualização pausada" +
   Retomar). Poupa o crédito do Learner Lab e o limite diário do Cloudflare Pages.
-- **Telas:** Início (Sompo: carteira em cartões ou **mapa** Leaflet/OSM; gestor: painel da
+- **Telas:** Início (Seguradora: carteira em cartões ou **mapa** Leaflet/OSM; gestor: painel da
   própria fazenda), Máquinas, **Painel da máquina** (tudo num lugar só, com atalhos Resumo ·
   Risco · Alertas · Telemetria), **Exposição financeira**, Operadores, Histórico,
   **Ocorrências** (quadro aberta / em verificação / resolvida), **Manutenção** (última + 180
-  dias, estimativa), e os cadastros Fazendas, Clientes, Usuários (só Sompo).
+  dias, estimativa), e os cadastros Fazendas, Clientes, Usuários (só Seguradora).
 - Gráficos em SVG próprio; animação só quando o gráfico entra na tela; tema claro/escuro
   (`sompo.tema`). No celular, menu em gaveta e tabelas em cartões.
 - **Alerta clicável** (modal de detalhe) e efeito *border beam* no card de risco (CSS puro,
   inspirado no 21st.dev).
 - Botão **Exportar PDF** → baixa `/relatorio/risco.pdf` do período escolhido.
-- Seletor de fazendas no topo (perfil Sompo) que troca o `dispositivo` consultado.
+- Seletor de fazendas no topo (perfil Seguradora) que troca o `dispositivo` consultado.
 - **Login:** `templates/login.html` (self-contained), com "manter conectado".
 
 ---
@@ -559,13 +559,13 @@ estragaria as médias da view `resumo_diario`.
 
 | Usuário | Perfil | Enxerga |
 |---|---|---|
-| `sompo` | Sompo | todas as fazendas + abas de cadastro |
+| `sompo` | Seguradora | todas as fazendas + abas de cadastro |
 | `gestor.santarita` | Gestor de Fazenda | só a Fazenda Santa Rita (`SOMPO-ESP32`) |
 | `gestor.valeverde` | Gestor de Fazenda | só a Fazenda Vale Verde (`SOMPO-ESP32-SIM`) |
 
 As senhas **não ficam no repositório** (ele é público). O banco guarda só o hash; peça as senhas
 ao responsável pelo projeto. Para trocar: no painel, menu do usuário → **Trocar minha senha**
-(pede a atual); o perfil Sompo troca a de qualquer login em Usuários → detalhe → **Trocar senha**.
+(pede a atual); o perfil Seguradora troca a de qualquer login em Usuários → detalhe → **Trocar senha**.
 Sem o painel: `python tools/definir_senha.py <usuario>`. Trocar a senha derruba as sessões abertas.
 
 A `PAINEL_SENHA` só liga o login (não é senha de nenhum usuário). Os perfis só funcionam

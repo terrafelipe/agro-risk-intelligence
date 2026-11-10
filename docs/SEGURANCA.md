@@ -1,4 +1,4 @@
-# Segurança — SOMPO (ESP32 → Supabase → API Flask)
+# Segurança — Agro Risk Intelligence (ESP32 → Supabase → API Flask)
 
 Este documento reúne o endurecimento de segurança aplicado e os **passos manuais**
 que precisam ser feitos no painel do Supabase (não dá para automatizar daqui).
@@ -154,7 +154,7 @@ falhas por IP (qualquer nome) travam o IP. Limite aceito: os contadores valem po
 Lambda e um ataque distribuído (muitos IPs) não é coberto.
 
 Troca de senha pelo painel (2026-09-25, revisada pelo Codex): a própria exige a atual e conta no
-limite de tentativas; a Sompo troca a de qualquer login; trocar derruba as outras sessões (a sessão guarda
+limite de tentativas; a Seguradora troca a de qualquer login; trocar derruba as outras sessões (a sessão guarda
 a impressão do hash; cookie sem impressão cai quando o banco já tem hash) e as rotas de senha revalidam a
 sessão no banco, sem o cache de 20 s. Aceito: corrida de milissegundos entre conferir a senha atual e gravar.
 
@@ -168,7 +168,7 @@ tela por `textContent`.
   `api/.env`, que o git ignora.
 - **Rotas sem login:** 32 de 32 respondem 401 (leitura e escrita).
 - **Autorização (IDOR):** 17 tentativas do gestor em máquina, operador, telemetria, relatório
-  (PDF), ocorrências e resumo de outra fazenda, e nas áreas só da Sompo, deram 403/404.
+  (PDF), ocorrências e resumo de outra fazenda, e nas áreas só da Seguradora, deram 403/404.
   `?fazenda=<outra>` é ignorado para o gestor.
 - **Cookie de sessão:** `HttpOnly` e `SameSite=Lax` (o `Secure` vem de `COOKIE_SEGURO` em produção).
 - **Erros:** nenhum stack trace nem detalhe do Supabase nas respostas.

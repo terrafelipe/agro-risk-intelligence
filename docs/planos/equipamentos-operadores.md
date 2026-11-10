@@ -4,7 +4,7 @@ Objetivo: fazenda com várias máquinas, cada uma com ESP32 exclusivo, operadore
 
 ## Requisitos
 
-- Sompo gerencia todas as fazendas; gestor gerencia apenas equipamentos e operadores da própria fazenda.
+- Seguradora gerencia todas as fazendas; gestor gerencia apenas equipamentos e operadores da própria fazenda.
 - Operador pertence a uma fazenda e pode ser autorizado em várias máquinas dela.
 - Dashboard inicia em resumo das máquinas. Detalhe preserva painel existente e identifica equipamento/operador.
 - RFID inicia/encerra sessão; outro crachá autorizado troca operador. Reinício encerra de forma interrompida e exige nova identificação.
@@ -35,7 +35,7 @@ RPC concluir_migracao_dispositivos() -> remove policies legadas de INSERT apenas
 
 API nova Blueprint frota: GET/POST /equipamentos, GET/PATCH /equipamentos/<id>, GET/POST /operadores, GET/PATCH /operadores/<id>, GET/PUT /equipamentos/<id>/operadores (body operador_ids), POST /equipamentos/<id>/credencial (token só retornado na geração), GET /operacoes, GET /fazendas/<id>/resumo.
 Listas {dados,total}; cadastros {ok:true,equipamento|operador}; autorizações {dados,total}; resumo {fazenda,equipamentos:[...campos equipamento,ultima_telemetria,scores,operador_nome,comunicacao,config_pendente]}.
-Rotas antigas aceitam ?equipamento=<id>; ?dispositivo ainda resolve equipamento; sem seleção retorna 400. Sompo pode consultar legado não cadastrado por dispositivo explicitamente; gestor nunca. /me inclui fazenda_id e fazenda_nome, sem dispositivo forçado.
+Rotas antigas aceitam ?equipamento=<id>; ?dispositivo ainda resolve equipamento; sem seleção retorna 400. Seguradora pode consultar legado não cadastrado por dispositivo explicitamente; gestor nunca. /me inclui fazenda_id e fazenda_nome, sem dispositivo forçado.
 Histórico filtros equipamento,operador,dias (padrão7,1..365), pagina,limite; {dados,total,pagina,limite}. Listagens máquinas/operadores ?fazenda=<id> (gestor força própria). Interface envia fk_fazenda_id_fazenda, nome, dispositivo_id, demais campos existentes. ativo somente boolean JSON.
 
 ## Tarefas

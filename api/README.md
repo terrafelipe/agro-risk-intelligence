@@ -1,6 +1,6 @@
-# SOMPO API
+# Agro Risk Intelligence API
 
-API REST em Flask para consolidação, consulta e análise de risco de incêndio e roubo para o projeto SOMPO da Sprint 3 da FIAP.
+API REST em Flask para consolidação, consulta e análise de risco de incêndio e roubo para o projeto Agro Risk Intelligence da Sprint 3 da FIAP.
 
 ## Objetivo
 

@@ -6,7 +6,7 @@ pode ser reaplicado: acrescenta `excluido_em`, valida vínculos e cria a operaç
 transacional de exclusão. Não execute novamente os scripts de seeds para atualizar
 uma instalação existente. Se reaplicar `frota.sql`, reaplique `exclusoes.sql` por último.
 
-O perfil Sompo exclui clientes, fazendas, usuários, operadores e máquinas. O gestor
+O perfil Seguradora exclui clientes, fazendas, usuários, operadores e máquinas. O gestor
 exclui somente máquinas e operadores da própria fazenda. Clientes e fazendas com
 cadastros não excluídos vinculados exibem os impedimentos. Cadastros inativos ainda
 contam como vínculos: precisam ser excluídos primeiro. Não é permitido excluir a
@@ -32,7 +32,7 @@ na repetição autorizada. Conflitos retornam `409` com `erro` e, quando aplicá
 indisponibilidade do banco `502`. A RPC de exclusão só pode ser chamada pelo
 backend (`service_role`), não pelo navegador nem pelo ESP32.
 
-`GET /usuarios/<id>` é restrito à Sompo e retorna ID, login, perfil, data de
+`GET /usuarios/<id>` é restrito à Seguradora e retorna ID, login, perfil, data de
 cadastro, fazenda e dados públicos do cliente. Senhas não são selecionadas.
 Consultas históricas continuam aceitando IDs de máquinas/operadores excluídos,
 respeitando o escopo de acesso original; listas operacionais os omitem.
